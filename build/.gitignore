@@ -1,0 +1,5 @@
+# Ignore all build files...
+*
+
+# ...but track this gitignore
+!.gitignore
