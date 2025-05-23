@@ -9,9 +9,9 @@ var tween: Tween
 
 
 func _ready() -> void:
+	position = _get_random_position()
 	# Desync all fishes from each other
 	await get_tree().create_timer(swim_duration * randf()).timeout
-	position = _get_random_position()
 	_swim()
 
 
@@ -25,7 +25,11 @@ func _swim() -> void:
 	var target_position: Vector2 = _get_random_position()
 	while target_position.distance_to(position) > maximum_distance:
 		target_position = _get_random_position()
-	look_at(target_position)
+	# HACK: global coordinate thing
+	if get_parent().has_method("to_global"):
+		look_at(get_parent().to_global(target_position))
+	else:
+		look_at(target_position)
 	tween.tween_property(self, "position", target_position, swim_duration + swim_variance * randf())
 	tween.finished.connect(_swim)
 
