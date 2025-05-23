@@ -23,6 +23,10 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="uid://xf6en65v74ms"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
