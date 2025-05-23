@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var pool_radius: float = 96.0
+@export var bounding_box := Rect2(-88, -88, 184, 184)
 @export var swim_duration: float = 0.8
 @export var swim_variance: float = 0.2
 @export var maximum_distance: float = 80
@@ -35,7 +35,8 @@ func _swim() -> void:
 
 
 func _get_random_position() -> Vector2:
-	# WARN: only gets a position within a circle, maybe rework to a box
-	var target_position := Vector2.RIGHT.rotated(TAU * randf())
-	target_position *= pool_radius * randf()
+	var target_position := Vector2(
+		randf_range(bounding_box.position.x, bounding_box.end.x),
+		randf_range(bounding_box.position.y, bounding_box.end.y)
+	)
 	return target_position
