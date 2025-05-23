@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccaep7x1vwor2"]
+
+[ext_resource type="Script" uid="uid://dbxhitcs013rf" path="res://src/level/activity/goldfish/goldfish_activity.gd" id="1_kstk1"]
+[ext_resource type="PackedScene" uid="uid://dxje2lxp6qxfr" path="res://src/level/activity/goldfish/fish.tscn" id="2_lxsmm"]
+
+[sub_resource type="Gradient" id="Gradient_8152h"]
+offsets = PackedFloat32Array(0.012987, 0.993506)
+colors = PackedColorArray(0, 1, 1, 0.501961, 0, 0, 1, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvick"]
+gradient = SubResource("Gradient_8152h")
+width = 192
+height = 192
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fyby"]
+radius = 24.0
+
+[node name="GoldfishActivity" type="Node2D"]
+script = ExtResource("1_kstk1")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bvick")
+metadata/_edit_lock_ = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Fish" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Fish2" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Fish3" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Fish4" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Fish5" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Fish6" parent="CanvasGroup" instance=ExtResource("2_lxsmm")]
+
+[node name="Catcher" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catcher"]
+shape = SubResource("CircleShape2D_0fyby")
