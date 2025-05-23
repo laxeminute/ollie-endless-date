@@ -11,10 +11,20 @@ config_version=5
 [application]
 
 config/name="Ollie Endless Date"
+run/main_scene="uid://bmt3f0gx76jkh"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/window_width_override=960
+window/size/window_height_override=540
+window/stretch/mode="viewport"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
