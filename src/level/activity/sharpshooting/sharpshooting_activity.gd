@@ -10,6 +10,7 @@ const HALF_HEIGHT = HEIGHT / 2.0
 @export var aim_duration := Vector2.ONE
 @export var aim_tween_ease := Tween.EaseType.EASE_IN_OUT
 @export var aim_tween_transition := Tween.TransitionType.TRANS_SINE
+@export var targets_shown: int = 4
 
 var tween_y: Tween
 var tween_x: Tween
@@ -40,6 +41,7 @@ func _process(_delta: float) -> void:
 
 
 func reset() -> void:
+	_setup_targets()
 	aim_y.position = Vector2.ZERO
 	aim_x.position = Vector2.ZERO
 	_setup_tween_y()
@@ -53,6 +55,24 @@ func _fire() -> void:
 		completed.emit()
 	else:
 		reset()
+
+
+func _setup_targets() -> void:
+	## All possible spawn locations are Targets in the scene.
+	## We randomly hide some, leaving `targets_shown` visible.
+	var total_targets := targets.get_child_count()
+	assert(total_targets >= targets_shown)
+	var shown_ids := Array(range(total_targets))
+	shown_ids.shuffle()
+	shown_ids = shown_ids.slice(0, targets_shown)
+	for i in total_targets:
+		var target_i := targets.get_child(i) as Area2D
+		if i in shown_ids:
+			target_i.show()
+			target_i.monitorable = true
+		else:
+			target_i.hide()
+			target_i.monitorable = false
 
 
 func _setup_tween_y() -> void:
