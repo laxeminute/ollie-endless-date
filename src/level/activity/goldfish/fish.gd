@@ -11,6 +11,7 @@ var tween: Tween
 func _ready() -> void:
 	# Desync all fishes from each other
 	await get_tree().create_timer(swim_duration * randf()).timeout
+	position = _get_random_position()
 	_swim()
 
 
