@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpkg5aejtlcxm"]
+
+[ext_resource type="Script" uid="uid://hofypmwrvtqf" path="res://src/level/activity/activity_overlay.gd" id="1_k8w4x"]
+
+[node name="ActivityOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k8w4x")
+
+[node name="ActivityContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CancelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 169.0
+offset_right = 439.0
+offset_bottom = 200.0
+text = "CANCEL"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
