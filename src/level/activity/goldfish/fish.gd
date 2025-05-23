@@ -30,7 +30,7 @@ func _swim() -> void:
 		look_at(get_parent().to_global(target_position))
 	else:
 		look_at(target_position)
-	tween.tween_property(self, "position", target_position, swim_duration + swim_variance * randf())
+	tween.tween_property(self, "position", target_position, swim_duration - swim_variance * randf())
 	tween.finished.connect(_swim)
 
 
