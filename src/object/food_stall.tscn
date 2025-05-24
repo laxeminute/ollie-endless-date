@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc274uw0vlck1"]
+
+[ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_sqpx8"]
+[ext_resource type="Script" uid="uid://faw8h0fktewk" path="res://src/object/food_stall.gd" id="2_j4le3"]
+
+[node name="FoodStall" instance=ExtResource("1_sqpx8")]
+script = ExtResource("2_j4le3")
+
+[node name="CollisionShape2D" parent="." index="0"]
+disabled = false
+debug_color = Color(0.678766, 0.49921, 0.204809, 0.42)
