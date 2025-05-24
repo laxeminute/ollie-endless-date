@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://pl2pr7vrysr7"]
+
+[ext_resource type="Script" uid="uid://df4ncod233pmc" path="res://src/interface/border_flash.gd" id="1_hx0ek"]
+
+[sub_resource type="Gradient" id="Gradient_g14qk"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g7s4i"]
+gradient = SubResource("Gradient_g14qk")
+width = 1
+height = 32
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_g7s4i"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f4ccd"]
+gradient = SubResource("Gradient_g7s4i")
+width = 1
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_f4ccd"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51gnn"]
+gradient = SubResource("Gradient_f4ccd")
+width = 32
+height = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_sgyse"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e7yrs"]
+gradient = SubResource("Gradient_sgyse")
+width = 32
+height = 1
+
+[node name="BorderFlash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hx0ek")
+
+[node name="Top" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_g7s4i")
+expand_mode = 1
+
+[node name="Bottom" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_f4ccd")
+expand_mode = 1
+
+[node name="Left" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 16.0
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_51gnn")
+expand_mode = 1
+
+[node name="Right" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_e7yrs")
+expand_mode = 1
