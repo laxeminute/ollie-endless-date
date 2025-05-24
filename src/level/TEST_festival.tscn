@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwmumhnhtuqkj"]
+[gd_scene load_steps=3 format=3 uid="uid://cwmumhnhtuqkj"]
 
 [ext_resource type="Texture2D" uid="uid://bk3gmqsdyko8o" path="res://src/level/mockup.png" id="1_h62hl"]
 [ext_resource type="PackedScene" uid="uid://bpkg5aejtlcxm" path="res://src/level/activity/activity_overlay.tscn" id="2_nx7vo"]
-[ext_resource type="PackedScene" uid="uid://ccaep7x1vwor2" path="res://src/level/activity/goldfish/goldfish_activity.tscn" id="3_1t8jl"]
 
 [node name="TEST_Festival" type="Node"]
 
@@ -11,6 +10,3 @@ texture = ExtResource("1_h62hl")
 centered = false
 
 [node name="ActivityOverlay" parent="." instance=ExtResource("2_nx7vo")]
-
-[node name="GoldfishActivity" parent="." instance=ExtResource("3_1t8jl")]
-position = Vector2(240, 135)
