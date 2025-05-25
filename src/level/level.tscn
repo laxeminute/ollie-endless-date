@@ -1,20 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbtns8kd1br41"]
+[gd_scene load_steps=9 format=3 uid="uid://bbtns8kd1br41"]
 
 [ext_resource type="Script" uid="uid://u5amyd2v14wq" path="res://src/level/level.gd" id="1_3pn8i"]
 [ext_resource type="Texture2D" uid="uid://rrqxgv0lkn5q" path="res://assets/sprite/festival_bg.png" id="1_gt4la"]
 [ext_resource type="Script" uid="uid://bt7578cu7bn7e" path="res://src/system/map.gd" id="3_3pn8i"]
 [ext_resource type="PackedScene" uid="uid://c0xvpf2s5mc1n" path="res://src/object/date_spot.tscn" id="3_r7bvo"]
 [ext_resource type="PackedScene" uid="uid://cc274uw0vlck1" path="res://src/object/food_stall.tscn" id="4_7gcor"]
-[ext_resource type="Texture2D" uid="uid://5kefsh6ut850" path="res://assets/sprite/characters.png" id="4_p6v4a"]
 [ext_resource type="PackedScene" uid="uid://bfm8k7smmshn" path="res://src/object/game_booth.tscn" id="5_3pn8i"]
-[ext_resource type="Script" uid="uid://dudepurtwqa1u" path="res://src/player/player.gd" id="5_5suky"]
 [ext_resource type="Script" uid="uid://dnicfld7ad8rd" path="res://src/object/pathing_point.gd" id="7_5suky"]
+[ext_resource type="PackedScene" uid="uid://uxn7kvhogon6" path="res://src/player/player.tscn" id="8_ob0n7"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3pn8i")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(240, 134)
+position = Vector2(240, 135)
 texture = ExtResource("1_gt4la")
 
 [node name="Map" type="Node2D" parent="."]
@@ -167,12 +166,4 @@ connections = [NodePath("../Point13"), NodePath("../Point18")]
 [node name="GameBooth4" parent="Map/Point20" instance=ExtResource("5_3pn8i")]
 position = Vector2(-8, -27)
 
-[node name="Player" type="Node2D" parent="."]
-visible = false
-position = Vector2(231, 50)
-script = ExtResource("5_5suky")
-
-[node name="Sprite" type="Sprite2D" parent="Player"]
-texture = ExtResource("4_p6v4a")
-hframes = 5
-vframes = 2
+[node name="Player" parent="." instance=ExtResource("8_ob0n7")]

@@ -8,7 +8,7 @@ func initialize(p_id: int) -> void:
 	id = p_id
 	var site := get_site()
 	if site:
-		site.point_id = id
+		site.location_id = id
 
 
 func get_site() -> Site:

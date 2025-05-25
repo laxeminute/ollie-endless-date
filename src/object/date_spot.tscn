@@ -1,18 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0xvpf2s5mc1n"]
+[gd_scene load_steps=8 format=3 uid="uid://c0xvpf2s5mc1n"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_rjstw"]
 [ext_resource type="Script" uid="uid://chgdv51ujxcj3" path="res://src/object/date_spot.gd" id="2_y6rm3"]
 [ext_resource type="Texture2D" uid="uid://5kefsh6ut850" path="res://assets/sprite/characters.png" id="3_bbhen"]
+[ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="4_103yh"]
 
-[node name="DateSpot" instance=ExtResource("1_rjstw")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbhen"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.188235, 0.376471, 0.509804, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_103yh"]
+bg_color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rnyd"]
+atlas = ExtResource("4_103yh")
+region = Rect2(106, 7, 12, 16)
+
+[node name="DateSpot" groups=["date_spot", "site"] instance=ExtResource("1_rjstw")]
 script = ExtResource("2_y6rm3")
+enjoyment_decrease_rate = 1.0
+enjoyment_increase_rate = 4.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 disabled = false
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-visible = false
+[node name="PartnerSprite" type="Sprite2D" parent="." index="1"]
+position = Vector2(8, -2)
 texture = ExtResource("3_bbhen")
 hframes = 5
 vframes = 2
 frame = 2
+
+[node name="EnjoymentBar" type="ProgressBar" parent="." index="2"]
+offset_left = 19.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bbhen")
+theme_override_styles/fill = SubResource("StyleBoxFlat_103yh")
+value = 10.0
+fill_mode = 3
+show_percentage = false
+
+[node name="LeaveBar" type="TextureProgressBar" parent="." index="3"]
+visible = false
+offset_left = -18.0
+offset_top = -8.0
+offset_right = -6.0
+offset_bottom = 8.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_0rnyd")
+texture_progress = SubResource("AtlasTexture_0rnyd")
+tint_under = Color(0.184314, 0.184314, 0.184314, 1)
+tint_progress = Color(0.984314, 0.227451, 0.227451, 1)
+
+[node name="ThoughtBubble" type="Node2D" parent="." index="4"]
+visible = false
+position = Vector2(-3, -11)

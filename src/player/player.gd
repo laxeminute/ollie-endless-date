@@ -1,35 +1,31 @@
 class_name Player
 extends Node2D
 
-@export var move_speed: float = 200.0
+signal max_angst_reached
 
-var current_path: Array[int]
-var current_point: int
+const MAX_ANGST = 100.0
 
-var _map: Map
-var _currently_move_toward: Vector2
+@export var angst_increase_on_leave_count: float = 10.0
+
+var current_angst: float
+
+@onready var actor: Sprite2D = $Actor
+@onready var avatar: TextureRect = %Avatar
+@onready var angst_bar: TextureProgressBar = %AngstBar
+@onready var item_icon: TextureRect = %ItemIcon
+@onready var score: Label = %Score
+@onready var time: Label = %Time
+
+func _ready() -> void:
+	Globals.leave_counted_down.connect(_on_leave_counted_down)
+	angst_bar.max_value = MAX_ANGST
+
 
 func initialize(map: Map, starting_point: int) -> void:
-	_map = map
-	current_path = []
-	current_point = starting_point
-	_currently_move_toward = _map.get_point_position(starting_point)
-	show()
-
-
-func _process(delta: float) -> void:
-	if position.distance_to(_currently_move_toward) > 1.0:
-		position = position.move_toward(_currently_move_toward, move_speed * delta)
-	else:
-		# try getting new current_point
-		var next_point = current_path.pop_back()
-		if next_point != null:
-			current_point = next_point
-			_currently_move_toward = _map.get_point_position(current_point)
-
-
-func move_to(end_point: int) -> void:
-	current_path = _map.get_point_stack(current_point, end_point)
+	actor.initialize(map, starting_point)
+	actor.show()
+	current_angst = 0.0
+	angst_bar.value = current_angst
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -37,7 +33,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var site = _get_selected_site()
 			if site:
-				move_to(site.point_id)
+				actor.move_to(site.location_id)
+
+
+func add_angst(value: float) -> void:
+	current_angst += value
+	angst_bar.value = current_angst
+	if current_angst >= MAX_ANGST:
+		max_angst_reached.emit()
+
+
+func _on_leave_counted_down() -> void:
+	add_angst(angst_increase_on_leave_count)
 
 
 func _get_selected_site() -> Site:
