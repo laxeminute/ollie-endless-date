@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://uxn7kvhogon6"]
+
+[ext_resource type="Script" uid="uid://dudepurtwqa1u" path="res://src/player/player.gd" id="1_5f2sf"]
+[ext_resource type="Texture2D" uid="uid://5kefsh6ut850" path="res://assets/sprite/characters.png" id="2_jiejy"]
+[ext_resource type="Script" uid="uid://bg1h5ye0jirp" path="res://src/player/actor.gd" id="3_o822w"]
+[ext_resource type="Texture2D" uid="uid://2yw0t2nyplgc" path="res://assets/sprite/portrait.png" id="4_x42xx"]
+[ext_resource type="Texture2D" uid="uid://l8fcxxj0u6lm" path="res://assets/sprite/hud_borders.png" id="5_l271a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw4ol"]
+atlas = ExtResource("4_x42xx")
+region = Rect2(0, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtmpf"]
+atlas = ExtResource("5_l271a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lobc"]
+atlas = ExtResource("5_l271a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Gradient" id="Gradient_n4rap"]
+colors = PackedColorArray(0.7, 0.14, 0.14, 1, 0.984314, 0.227451, 0.227451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iv48k"]
+gradient = SubResource("Gradient_n4rap")
+width = 14
+height = 104
+fill_from = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ksj"]
+atlas = ExtResource("5_l271a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0oqu"]
+atlas = ExtResource("5_l271a")
+region = Rect2(96, 0, 32, 32)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_5f2sf")
+
+[node name="Actor" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_jiejy")
+hframes = 5
+vframes = 2
+script = ExtResource("3_o822w")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Ollie" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Avatar" type="TextureRect" parent="HUD/Ollie"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -105.0
+offset_right = 91.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_dw4ol")
+
+[node name="AngstBar" type="TextureProgressBar" parent="HUD/Ollie"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = -117.0
+offset_right = 19.0
+offset_bottom = -13.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = SubResource("AtlasTexture_jtmpf")
+texture_over = SubResource("AtlasTexture_5lobc")
+texture_progress = SubResource("GradientTexture2D_iv48k")
+
+[node name="Item" type="NinePatchRect" parent="HUD/Ollie"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -34.0
+offset_right = 99.0
+offset_bottom = -2.0
+texture = SubResource("AtlasTexture_n7ksj")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="ItemIcon" type="TextureRect" parent="HUD/Ollie/Item"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Score" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Rect" type="NinePatchRect" parent="HUD/Score"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 88.0
+offset_bottom = 31.0
+texture = SubResource("AtlasTexture_q0oqu")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="HUD/Score/Rect"]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 46.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 8
+text = "score"
+
+[node name="Score" type="Label" parent="HUD/Score/Rect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 80.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 8
+text = "0000000200"
+
+[node name="Time" type="Label" parent="HUD/Score/Rect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 80.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 8
+text = "04:52.20"
+horizontal_alignment = 2
+text_overrun_behavior = 1

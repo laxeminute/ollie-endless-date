@@ -1,0 +1,169 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbtns8kd1br41"]
+
+[ext_resource type="Script" uid="uid://u5amyd2v14wq" path="res://src/level/level.gd" id="1_3pn8i"]
+[ext_resource type="Texture2D" uid="uid://rrqxgv0lkn5q" path="res://assets/sprite/festival_bg.png" id="1_gt4la"]
+[ext_resource type="Script" uid="uid://bt7578cu7bn7e" path="res://src/system/map.gd" id="3_3pn8i"]
+[ext_resource type="PackedScene" uid="uid://c0xvpf2s5mc1n" path="res://src/object/date_spot.tscn" id="3_r7bvo"]
+[ext_resource type="PackedScene" uid="uid://cc274uw0vlck1" path="res://src/object/food_stall.tscn" id="4_7gcor"]
+[ext_resource type="PackedScene" uid="uid://bfm8k7smmshn" path="res://src/object/game_booth.tscn" id="5_3pn8i"]
+[ext_resource type="Script" uid="uid://dnicfld7ad8rd" path="res://src/object/pathing_point.gd" id="7_5suky"]
+[ext_resource type="PackedScene" uid="uid://uxn7kvhogon6" path="res://src/player/player.tscn" id="8_ob0n7"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_3pn8i")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 135)
+texture = ExtResource("1_gt4la")
+
+[node name="Map" type="Node2D" parent="."]
+script = ExtResource("3_3pn8i")
+
+[node name="Point0" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(48, 149)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point9")]
+
+[node name="DateSpot1" parent="Map/Point0" instance=ExtResource("3_r7bvo")]
+
+[node name="Point1" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(56, 74)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point10")]
+
+[node name="DateSpot2" parent="Map/Point1" instance=ExtResource("3_r7bvo")]
+
+[node name="Point2" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(124, 30)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point11")]
+
+[node name="DateSpot3" parent="Map/Point2" instance=ExtResource("3_r7bvo")]
+
+[node name="Point3" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(307, 24)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point12")]
+
+[node name="DateSpot4" parent="Map/Point3" instance=ExtResource("3_r7bvo")]
+
+[node name="Point4" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(384, 52)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point13")]
+
+[node name="DateSpot5" parent="Map/Point4" instance=ExtResource("3_r7bvo")]
+
+[node name="Point5" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(435, 99)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point14")]
+
+[node name="DateSpot6" parent="Map/Point5" instance=ExtResource("3_r7bvo")]
+
+[node name="Point6" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(437, 183)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point15")]
+
+[node name="DateSpot7" parent="Map/Point6" instance=ExtResource("3_r7bvo")]
+
+[node name="Point7" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(359, 233)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point16")]
+
+[node name="DateSpot8" parent="Map/Point7" instance=ExtResource("3_r7bvo")]
+
+[node name="Point8" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(209, 244)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point17")]
+
+[node name="DateSpot9" parent="Map/Point8" instance=ExtResource("3_r7bvo")]
+
+[node name="Point9" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(118, 175)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point0"), NodePath("../Point10"), NodePath("../Point17")]
+
+[node name="FoodStall1" parent="Map/Point9" instance=ExtResource("4_7gcor")]
+position = Vector2(27, -20)
+
+[node name="Point10" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(109, 100)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point1"), NodePath("../Point9"), NodePath("../Point11"), NodePath("../Point18")]
+
+[node name="GameBooth1" parent="Map/Point10" instance=ExtResource("5_3pn8i")]
+position = Vector2(38, -13)
+
+[node name="Point11" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(167, 48)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point2"), NodePath("../Point10"), NodePath("../Point12")]
+
+[node name="Point12" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(231, 50)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point3"), NodePath("../Point11"), NodePath("../Point13")]
+
+[node name="Point13" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(309, 77)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point4"), NodePath("../Point12"), NodePath("../Point14"), NodePath("../Point20")]
+
+[node name="Point14" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(383, 101)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point5"), NodePath("../Point13"), NodePath("../Point15")]
+
+[node name="Point15" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(374, 163)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point6"), NodePath("../Point14"), NodePath("../Point16"), NodePath("../Point19")]
+
+[node name="GameBooth2" parent="Map/Point15" instance=ExtResource("5_3pn8i")]
+position = Vector2(-28, -27)
+
+[node name="Point16" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(321, 205)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point7"), NodePath("../Point15"), NodePath("../Point17")]
+
+[node name="FoodStall2" parent="Map/Point16" instance=ExtResource("4_7gcor")]
+position = Vector2(-18, -24)
+
+[node name="Point17" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(198, 204)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point8"), NodePath("../Point16"), NodePath("../Point9"), NodePath("../Point18")]
+
+[node name="GameBooth3" parent="Map/Point17" instance=ExtResource("5_3pn8i")]
+position = Vector2(30, -25)
+
+[node name="Point18" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(197, 126)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point10"), NodePath("../Point17"), NodePath("../Point19"), NodePath("../Point20")]
+
+[node name="FoodStall3" parent="Map/Point18" instance=ExtResource("4_7gcor")]
+position = Vector2(1, -26)
+
+[node name="Point19" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(265, 146)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point15"), NodePath("../Point18")]
+
+[node name="FoodStall4" parent="Map/Point19" instance=ExtResource("4_7gcor")]
+position = Vector2(11, -23)
+
+[node name="Point20" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(254, 101)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point13"), NodePath("../Point18")]
+
+[node name="GameBooth4" parent="Map/Point20" instance=ExtResource("5_3pn8i")]
+position = Vector2(-8, -27)
+
+[node name="Player" parent="." instance=ExtResource("8_ob0n7")]

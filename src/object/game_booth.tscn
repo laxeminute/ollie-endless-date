@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfm8k7smmshn"]
+
+[ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_miwc3"]
+[ext_resource type="Script" uid="uid://c0xypmsx7d5sv" path="res://src/object/game_booth.gd" id="2_n38kt"]
+
+[node name="GameBooth" groups=["game_booth", "site"] instance=ExtResource("1_miwc3")]
+script = ExtResource("2_n38kt")
+
+[node name="CollisionShape2D" parent="." index="0"]
+disabled = false
+debug_color = Color(0, 0.549662, 0.92526, 0.42)
