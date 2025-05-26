@@ -1,6 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4c6vhxq7lciu"]
+[gd_scene load_steps=5 format=3 uid="uid://d4c6vhxq7lciu"]
 
 [ext_resource type="Script" uid="uid://d0yei3iwxi1c" path="res://src/level/activity/goldfish/catcher.gd" id="1_wk5ja"]
+
+[sub_resource type="Gradient" id="Gradient_wk5ja"]
+offsets = PackedFloat32Array(0, 0.935065, 1)
+colors = PackedColorArray(0.72549, 0.72549, 0.72549, 0.564706, 0.431373, 0.431373, 0.431373, 0.564706, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqeum"]
+gradient = SubResource("Gradient_wk5ja")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0fyby"]
 radius = 20.0
@@ -9,6 +21,9 @@ radius = 20.0
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_wk5ja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_hqeum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0fyby")
