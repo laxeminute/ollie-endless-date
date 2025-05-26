@@ -15,6 +15,8 @@ width = 8
 height = 2
 
 [node name="Fish" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_527fu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

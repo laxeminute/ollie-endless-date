@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbtns8kd1br41"]
+[gd_scene load_steps=10 format=3 uid="uid://bbtns8kd1br41"]
 
 [ext_resource type="Script" uid="uid://u5amyd2v14wq" path="res://src/level/level.gd" id="1_3pn8i"]
 [ext_resource type="Texture2D" uid="uid://rrqxgv0lkn5q" path="res://assets/sprite/festival_bg.png" id="1_gt4la"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfm8k7smmshn" path="res://src/object/game_booth.tscn" id="5_3pn8i"]
 [ext_resource type="Script" uid="uid://dnicfld7ad8rd" path="res://src/object/pathing_point.gd" id="7_5suky"]
 [ext_resource type="PackedScene" uid="uid://uxn7kvhogon6" path="res://src/player/player.tscn" id="8_ob0n7"]
+[ext_resource type="PackedScene" uid="uid://bpkg5aejtlcxm" path="res://src/level/activity/activity_overlay.tscn" id="9_p6v4a"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3pn8i")
@@ -185,3 +186,18 @@ connections = [NodePath("../Point13"), NodePath("../Point18")]
 position = Vector2(-8, -27)
 
 [node name="Player" parent="." instance=ExtResource("8_ob0n7")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ActivityOverlay" parent="CanvasLayer" instance=ExtResource("9_p6v4a")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 212.0
+offset_top = 129.0
+offset_right = 268.0
+offset_bottom = 156.0
+text = "haha"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

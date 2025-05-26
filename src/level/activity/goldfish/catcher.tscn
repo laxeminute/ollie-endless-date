@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4c6vhxq7lciu"]
+
+[ext_resource type="Script" uid="uid://d0yei3iwxi1c" path="res://src/level/activity/goldfish/catcher.gd" id="1_wk5ja"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fyby"]
+radius = 20.0
+
+[node name="Catcher" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_wk5ja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0fyby")

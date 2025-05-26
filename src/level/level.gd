@@ -9,6 +9,7 @@ extends Node2D
 @onready var map: Map = $Map
 @onready var player: Player = $Player
 
+
 func _ready() -> void:
 	player.initialize(map, player_starting_point)
 	player.max_angst_reached.connect(_on_max_angst_reached)
@@ -17,4 +18,9 @@ func _ready() -> void:
 
 
 func _on_max_angst_reached() -> void:
+	# TODO: game over screen
 	print("GAME OVER")
+
+
+func _on_button_pressed() -> void:
+	%ActivityOverlay.open(randi_range(0, 1))

@@ -25,7 +25,7 @@ func _ready() -> void:
 	reset()
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("activity_action"):
 		return
 	if tween_y.is_running():
