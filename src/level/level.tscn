@@ -25,6 +25,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point9")]
 
 [node name="DateSpot1" parent="Map/Point0" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point1" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(56, 74)
@@ -32,6 +34,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point10")]
 
 [node name="DateSpot2" parent="Map/Point1" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point2" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(124, 30)
@@ -39,6 +43,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point11")]
 
 [node name="DateSpot3" parent="Map/Point2" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point3" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(307, 24)
@@ -46,6 +52,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point12")]
 
 [node name="DateSpot4" parent="Map/Point3" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point4" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(384, 52)
@@ -53,6 +61,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point13")]
 
 [node name="DateSpot5" parent="Map/Point4" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point5" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(435, 99)
@@ -60,6 +70,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point14")]
 
 [node name="DateSpot6" parent="Map/Point5" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point6" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(437, 183)
@@ -67,6 +79,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point15")]
 
 [node name="DateSpot7" parent="Map/Point6" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point7" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(359, 233)
@@ -74,6 +88,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point16")]
 
 [node name="DateSpot8" parent="Map/Point7" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point8" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(209, 244)
@@ -81,6 +97,8 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point17")]
 
 [node name="DateSpot9" parent="Map/Point8" instance=ExtResource("3_r7bvo")]
+request_cooldown_on_arrival = 2.0
+request_cooldown = 10.0
 
 [node name="Point9" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(118, 175)
