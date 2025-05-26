@@ -16,12 +16,16 @@ var offscreen_point: Vector2:
 	get:
 		return Vector2(size.x / 2, size.y + ACTIVITY_HEIGHT)
 
+@onready var start_sound: AudioStreamPlayer = $StartSound
+@onready var win_sound: AudioStreamPlayer = $WinSound
+
 
 func open(id: int):
 	if is_instance_valid(current_activity):
 		push_error("Tried to open activity when one is active, overwriting old activity")
 		current_activity.queue_free()
 	show()
+	start_sound.play()
 	current_activity = activity_scenes[id].instantiate()
 	current_activity.completed.connect(close.bind(true))
 	add_child(current_activity)
@@ -38,6 +42,8 @@ func open(id: int):
 
 
 func close(success: bool) -> void:
+	if success:
+		win_sound.play()
 	current_activity.process_mode = Node.PROCESS_MODE_DISABLED
 	var exit_tween := create_tween()
 
