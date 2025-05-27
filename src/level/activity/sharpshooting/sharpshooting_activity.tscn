@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3qbvcbj5avoy"]
+[gd_scene load_steps=10 format=3 uid="uid://b3qbvcbj5avoy"]
 
 [ext_resource type="PackedScene" uid="uid://cawcs6blimd6n" path="res://src/level/activity/sharpshooting/target.tscn" id="1_bvick"]
 [ext_resource type="Script" uid="uid://p5evdjf50hk7" path="res://src/level/activity/sharpshooting/sharpshooting_activity.gd" id="1_tlbpb"]
+[ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="3_txmst"]
 
 [sub_resource type="Gradient" id="Gradient_8152h"]
 offsets = PackedFloat32Array(0, 0.993506)
@@ -26,6 +27,9 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tlbpb"]
 size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txmst"]
+size = Vector2(192, 192)
 
 [node name="SharpshootingActivity" type="Node2D"]
 script = ExtResource("1_tlbpb")
@@ -75,3 +79,18 @@ texture = SubResource("GradientTexture2D_txmst")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair"]
 shape = SubResource("RectangleShape2D_tlbpb")
+
+[node name="FullArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullArea"]
+shape = SubResource("RectangleShape2D_txmst")
+debug_color = Color(0.438457, 0.454766, 1, 0.42)
+
+[node name="ClickDetector" type="Node" parent="FullArea" node_paths=PackedStringArray("area")]
+script = ExtResource("3_txmst")
+area = NodePath("..")
+metadata/_custom_type_script = "uid://d175w5sjdjnup"
+
+[connection signal="clicked" from="FullArea/ClickDetector" to="." method="_on_click_detector_clicked"]

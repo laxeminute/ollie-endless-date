@@ -42,6 +42,7 @@ activity_action={
 [layer_names]
 
 2d_physics/layer_5="fish"
+2d_physics/layer_8="mouse"
 
 [rendering]
 

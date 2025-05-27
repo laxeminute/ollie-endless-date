@@ -25,17 +25,6 @@ func _ready() -> void:
 	reset()
 
 
-func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("activity_action"):
-		return
-	if tween_y.is_running():
-		tween_y.kill()  # lock vertical in place
-		_setup_tween_x()
-	elif tween_x.is_running():
-		tween_x.kill()
-		_fire()
-
-
 func _process(_delta: float) -> void:
 	crosshair.position = Vector2(aim_x.position.x, aim_y.position.y)
 
@@ -97,3 +86,12 @@ func _setup_tween_x() -> void:
 	tween_x.tween_property(aim_x, "position", HALF_WIDTH * Vector2.RIGHT, aim_duration.x)
 	tween_x.tween_property(aim_x, "position", HALF_WIDTH * Vector2.LEFT, aim_duration.x)
 	tween_x.custom_step(aim_duration.x / 2.0)
+
+
+func _on_click_detector_clicked() -> void:
+	if tween_y.is_running():
+		tween_y.kill()  # lock vertical in place
+		_setup_tween_x()
+	elif tween_x.is_running():
+		tween_x.kill()
+		_fire()
