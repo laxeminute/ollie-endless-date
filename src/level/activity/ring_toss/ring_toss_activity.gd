@@ -5,6 +5,9 @@ signal completed
 const NUM_NUMBERS = 9
 
 var ring_numbers: Array[RingNumber]
+var correct_answer: int
+
+@onready var question_label: Label = $Question
 
 
 func _ready() -> void:
@@ -15,8 +18,20 @@ func _ready() -> void:
 
 
 func _reset() -> void:
-	var randoms: Array = range(NUM_NUMBERS)
+	# 1-indexed numbers
+	var randoms: Array = range(1, NUM_NUMBERS + 1)
+
+	# scramble positions
 	randoms.shuffle()
 	for i in randoms.size():
-		## number is 1-indexed
-		ring_numbers[i].number = randoms[i] + 1
+		ring_numbers[i].number = randoms[i]
+
+	# generate question
+	# "auxillary + difference = correct_answer"
+	randoms.shuffle()
+	correct_answer = randoms[0]
+	var auxillary: int = randoms[1]
+	var difference: int = correct_answer - auxillary
+	question_label.text = (
+		"%s %s %s = ?" % [auxillary, "+" if difference > 0 else "-", abs(difference)]
+	)
