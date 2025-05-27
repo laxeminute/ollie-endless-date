@@ -13,6 +13,7 @@ var correct_answer: int
 func _ready() -> void:
 	for rn: RingNumber in $Numbers.get_children():
 		ring_numbers.append(rn)
+		rn.clicked.connect(_on_ring_number_clicked)
 	assert(ring_numbers.size() == NUM_NUMBERS)
 	_reset()
 
@@ -24,6 +25,7 @@ func _reset() -> void:
 	# scramble positions
 	randoms.shuffle()
 	for i in randoms.size():
+		ring_numbers[i].reset()
 		ring_numbers[i].number = randoms[i]
 
 	# generate question
@@ -35,3 +37,14 @@ func _reset() -> void:
 	question_label.text = (
 		"%s %s %s = ?" % [auxillary, "+" if difference > 0 else "-", abs(difference)]
 	)
+
+
+func _on_ring_number_clicked(number: int) -> void:
+	for rn: RingNumber in $Numbers.get_children():
+		rn.active = false
+	await get_tree().create_timer(0.5).timeout
+	if number == correct_answer:
+		completed.emit()
+	else:
+		# TODO: play wrong sound
+		_reset()
