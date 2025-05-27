@@ -13,6 +13,7 @@ var current_activity: Node2D
 var offscreen_point: Vector2:
 	get:
 		return Vector2(size.x / 2, size.y + ACTIVITY_HEIGHT)
+var exit_tween: Tween
 
 @onready var start_sound: AudioStreamPlayer = $StartSound
 @onready var win_sound: AudioStreamPlayer = $WinSound
@@ -40,10 +41,13 @@ func open(id: int):
 
 
 func close(success: bool) -> void:
+	if exit_tween:
+		if exit_tween.is_running():
+			return
 	if success:
 		win_sound.play()
 	current_activity.process_mode = Node.PROCESS_MODE_DISABLED
-	var exit_tween := create_tween()
+	exit_tween = create_tween()
 
 	# transition
 	exit_tween.set_ease(Tween.EASE_IN)
