@@ -1,8 +1,6 @@
 class_name ActivityOverlay
 extends Control
 
-# TODO: prevent button clicks outside the activity from affecting the activity
-
 signal finished(success: bool)
 
 const ACTIVITY_HEIGHT = 192
