@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccaep7x1vwor2"]
+[gd_scene load_steps=7 format=3 uid="uid://ccaep7x1vwor2"]
 
 [ext_resource type="Script" uid="uid://dbxhitcs013rf" path="res://src/level/activity/goldfish/goldfish_activity.gd" id="1_kstk1"]
-[ext_resource type="PackedScene" uid="uid://dxje2lxp6qxfr" path="res://src/level/activity/goldfish/fish.tscn" id="2_lxsmm"]
 [ext_resource type="PackedScene" uid="uid://d4c6vhxq7lciu" path="res://src/level/activity/goldfish/catcher.tscn" id="3_aertf"]
 [ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="4_0fyby"]
 
@@ -29,18 +28,6 @@ z_index = 1
 collision_layer = 128
 
 [node name="Fishes" type="CanvasGroup" parent="."]
-
-[node name="Fish" parent="Fishes" instance=ExtResource("2_lxsmm")]
-
-[node name="Fish2" parent="Fishes" instance=ExtResource("2_lxsmm")]
-
-[node name="Fish3" parent="Fishes" instance=ExtResource("2_lxsmm")]
-
-[node name="Fish4" parent="Fishes" instance=ExtResource("2_lxsmm")]
-
-[node name="Fish5" parent="Fishes" instance=ExtResource("2_lxsmm")]
-
-[node name="Fish6" parent="Fishes" instance=ExtResource("2_lxsmm")]
 
 [node name="FullArea" type="Area2D" parent="."]
 

@@ -7,9 +7,18 @@ const WIDTH = 192
 const HALF_HEIGHT = HEIGHT / 2.0
 const HALF_WIDTH = WIDTH / 2.0
 
+const FishScene = preload("uid://dxje2lxp6qxfr")
+
 @export var catcher_agility: float = 16.0
+@export_range(1, 10) var num_fishes: int = 4
 
 @onready var catcher: Catcher = $Catcher
+@onready var fish_group: Node2D = $Fishes
+
+
+func _ready() -> void:
+	for _i in num_fishes:
+		fish_group.add_child(FishScene.instantiate())
 
 
 func _process(delta: float) -> void:
