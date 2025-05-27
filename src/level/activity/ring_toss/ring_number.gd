@@ -6,6 +6,11 @@ signal clicked(number: int)
 const DIMENSIONS = Vector2i(48, 48)
 
 var active: bool = true
+var _has_mouse: bool = false:
+	set(value):
+		_has_mouse = value
+		if active:
+			ring.visible = _has_mouse
 
 @onready var number_sprite: Sprite2D = $Number
 @onready var ring: Sprite2D = $Ring
@@ -25,12 +30,14 @@ var number: int:
 
 func reset() -> void:
 	active = true
-	ring.hide()
+	ring.visible = _has_mouse
 	ring.modulate = Color(Color.WHITE, 0.5)
 
 
 func _on_click_detector_clicked() -> void:
 	if not active:
+		return
+	if not ring.visible:
 		return
 	clicked.emit(number)
 	ring.modulate = Color.WHITE
@@ -41,12 +48,8 @@ func _on_click_detector_clicked() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if not active:
-		return
-	ring.show()
+	_has_mouse = true
 
 
 func _on_mouse_exited() -> void:
-	if not active:
-		return
-	ring.hide()
+	_has_mouse = false
