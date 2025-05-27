@@ -1,6 +1,4 @@
-extends Node2D
-
-signal completed
+extends Activity
 
 const NUM_NUMBERS = 9
 

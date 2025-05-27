@@ -1,6 +1,4 @@
-extends Node2D
-
-signal completed
+extends Activity
 
 const WIDTH = 192
 const HEIGHT = 192

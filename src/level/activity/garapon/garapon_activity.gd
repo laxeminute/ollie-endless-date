@@ -1,6 +1,4 @@
-extends Node2D
-
-signal completed
+extends Activity
 
 @export_range(1, 4) var min_spins: int = 1
 @export_range(1, 12) var spin_count_variance: int = 4
