@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmvifaq5bnx8m"]
+
+[ext_resource type="Script" uid="uid://dyyxchq33mrxd" path="res://src/level/activity/garapon/handle.gd" id="1_loxw8"]
+
+[sub_resource type="Gradient" id="Gradient_mwmut"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pq3xv"]
+gradient = SubResource("Gradient_mwmut")
+width = 20
+height = 20
+
+[node name="Handle" type="Node2D"]
+script = ExtResource("1_loxw8")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-28, -50, 28, -50, 54, 0, 28, 50, -28, 50, -54, 0)
+
+[node name="Crank" type="Sprite2D" parent="."]
+position = Vector2(48, 0)
+texture = SubResource("GradientTexture2D_pq3xv")
+
+[node name="MouseTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

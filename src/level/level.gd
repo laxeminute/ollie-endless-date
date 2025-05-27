@@ -23,4 +23,4 @@ func _on_max_angst_reached() -> void:
 
 
 func _on_button_pressed() -> void:
-	%ActivityOverlay.open(randi_range(0, 2))
+	%ActivityOverlay.open(randi_range(0, 3))
