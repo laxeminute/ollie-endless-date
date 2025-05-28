@@ -8,14 +8,21 @@ signal revolved
 var active: bool = false
 var progress: float = 0
 
+@onready var last_rotation: float = rotation
+
 
 func _process(_delta: float) -> void:
 	if not active:
 		return
-	var pre_rotation: float = rotation
 	look_at(get_global_mouse_position())
-	var dtheta: float = rotation - pre_rotation
-	progress += dtheta * direction
+
+
+func _physics_process(_delta: float) -> void:
+	if not active:
+		return
+	look_at(get_global_mouse_position())
+	progress += direction * (rotation - last_rotation)
+	last_rotation = rotation
 
 	if progress > TAU:
 		progress -= TAU
