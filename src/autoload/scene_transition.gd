@@ -14,7 +14,7 @@ func _ready() -> void:
 	root_window.remove_child.call_deferred(self)
 
 
-func fade_to_scene(path: String) -> void:
+func fade_to_scene(path: String, duration: float = default_fade_duration) -> void:
 	if not ResourceLoader.exists(path):
 		push_error("Path not found: %s" % path)
 		return
@@ -22,16 +22,16 @@ func fade_to_scene(path: String) -> void:
 
 	root_window.add_child(self)
 	get_tree().paused = true
-	await _fade_to_black()
+	await _fade_to_black(duration)
 
 	get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(path))
 
-	await _fade_from_black()
+	await _fade_from_black(duration)
 	get_tree().paused = false
 	root_window.remove_child(self)
 
 
-func _fade_to_black(duration: float = default_fade_duration) -> void:
+func _fade_to_black(duration: float) -> void:
 	fade_rect.modulate = Color.TRANSPARENT
 	var tween := create_tween()
 	tween.set_ease(tween_ease)
@@ -40,7 +40,7 @@ func _fade_to_black(duration: float = default_fade_duration) -> void:
 	await tween.finished
 
 
-func _fade_from_black(duration: float = default_fade_duration) -> void:
+func _fade_from_black(duration: float) -> void:
 	fade_rect.modulate = Color.WHITE
 	var tween := create_tween()
 	tween.set_ease(tween_ease)

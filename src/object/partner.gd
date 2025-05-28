@@ -20,7 +20,10 @@ const LEAVE_WAIT_COUNT = 5.0
 var id: String
 var date_spot: Site
 
-var current_enjoyment: float
+var current_enjoyment: float:
+	set(value):
+		current_enjoyment = clamp(value, 0.0, MAX_ENJOYMENT)
+		enjoyment_updated.emit()
 var is_wanting_to_leave: bool
 var leave_countdown: float
 var current_request: String
@@ -49,7 +52,6 @@ func _process(delta: float) -> void:
 
 func restore_enjoyment() -> void:
 	current_enjoyment = MAX_ENJOYMENT
-	enjoyment_updated.emit()
 
 
 func finish_request() -> void:
@@ -61,9 +63,6 @@ func finish_request() -> void:
 func receive_wrong_food() -> void:
 	current_enjoyment -= enjoyment_decrease_on_wrong_food
 	Globals.wrong_food_given.emit()
-	if current_enjoyment < 0.0:
-		current_enjoyment = 0.0
-	enjoyment_updated.emit()
 
 
 func follow_actor() -> void:
@@ -77,9 +76,6 @@ func returning_with_actor() -> void:
 func ruined_activity() -> void:
 	current_enjoyment -= enjoyment_decrease_on_canceled_activity
 	Globals.activity_canceled.emit()
-	if current_enjoyment < 0.0:
-		current_enjoyment = 0.0
-	enjoyment_updated.emit()
 
 
 func receive_bonus_item(item_id: String) -> void:
@@ -93,16 +89,13 @@ func receive_bonus_item(item_id: String) -> void:
 func _update_enjoyment(delta: float) -> void:
 	if not date_spot.actor:
 		current_enjoyment -= delta * enjoyment_decrease_rate
-		enjoyment_updated.emit()
-		if current_enjoyment < 0.0:
-			current_enjoyment = 0.0
+		if current_enjoyment <= 0.0:
 			if not is_wanting_to_leave:
 				_start_leave_countdown()
 			else:
 				_update_leave_countdown(delta)
 	else:
 		current_enjoyment += delta * enjoyment_increase_rate
-		enjoyment_updated.emit()
 		if current_enjoyment > MAX_VISIBLE_ENJOYMENT:
 			restore_enjoyment()
 		if is_wanting_to_leave:

@@ -1,5 +1,7 @@
 extends Node2D
 
+const PATH_TO_GAME_OVER = "uid://dt2tlhl582r2j"
+
 @export var player_starting_point: int
 @export var date_location_spawn_order: Array[Site]
 
@@ -28,8 +30,7 @@ func _ready() -> void:
 
 
 func _on_max_angst_reached() -> void:
-	# TODO: game over screen
-	print("GAME OVER")
+	SceneTransition.fade_to_scene(PATH_TO_GAME_OVER)
 
 
 func _on_bonus_item_timeout() -> void:

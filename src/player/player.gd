@@ -68,6 +68,7 @@ func add_angst(value: float) -> void:
 	tween.tween_property(angst_bar, "value", current_angst, value / angst_tween_rate)
 	_update_avatar()
 	if current_angst >= MAX_ANGST:
+		await tween.finished
 		max_angst_reached.emit()
 
 
