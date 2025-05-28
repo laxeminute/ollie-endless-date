@@ -39,4 +39,6 @@ func _on_minigame_finished(success: bool) -> void:
 	ActivityOverlay.finished.disconnect(_on_minigame_finished)
 	if success:
 		_partner.finish_request()
+	else:
+		Globals.activity_canceled.emit()
 	actor.move_to(_return_location)
