@@ -2,7 +2,14 @@ extends Site
 
 const PartnerScene = preload("res://src/object/partner.tscn")
 
+@export var default_bar_color := Color("99e550")
+@export var bad_bar_color := Color("e65050")
+@export var good_bar_color := Color("50c3e6")
+@export var bar_tween_rate: float = 20.0
+
 var partner: Partner
+var enjoyment_style: StyleBoxFlat
+var bar_tween: Tween
 
 @onready var partner_anchor: Marker2D = $PartnerAnchor
 @onready var enjoyment_bar: ProgressBar = $EnjoymentBar
@@ -13,6 +20,7 @@ var partner: Partner
 
 func _ready() -> void:
 	_on_partner_left()
+	enjoyment_style = enjoyment_bar.get_theme_stylebox("fill", "ProgressBar") as StyleBoxFlat
 	enjoyment_bar.max_value = Partner.MAX_VISIBLE_ENJOYMENT
 	leave_bar.max_value = Partner.LEAVE_WAIT_COUNT
 
@@ -100,10 +108,27 @@ func _on_returning_from_activity() -> void:
 		partner.ruined_activity()
 
 
-func _update_enjoyment_bar() -> void:
+func _update_enjoyment_bar(new_value: float) -> void:
 	if not partner:
 		return
-	enjoyment_bar.value = partner.current_enjoyment
+	if bar_tween:
+		if bar_tween.is_running():
+			return
+	var diff: float = min(new_value, enjoyment_bar.max_value) - enjoyment_bar.value
+	if abs(diff) < 2.0:
+		# don't bother animating small changes
+		enjoyment_bar.value = new_value
+		return
+
+	enjoyment_style.bg_color = (good_bar_color if diff > 0 else bad_bar_color)
+	bar_tween = create_tween()
+	bar_tween.set_trans(Tween.TRANS_QUAD)
+	bar_tween.set_ease(Tween.EASE_OUT)
+	bar_tween.set_parallel()
+	bar_tween.tween_property(
+		enjoyment_style, "bg_color", default_bar_color, abs(diff) / bar_tween_rate
+	)
+	bar_tween.tween_property(enjoyment_bar, "value", new_value, abs(diff) / bar_tween_rate)
 
 
 func _update_thought_bubble() -> void:

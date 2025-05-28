@@ -2,7 +2,7 @@ class_name Partner
 extends Sprite2D
 
 signal request_updated
-signal enjoyment_updated
+signal enjoyment_updated(new_value: float)
 signal leave_countdown_updated
 signal leave_countdown_ended
 
@@ -23,7 +23,7 @@ var date_spot: Site
 var current_enjoyment: float:
 	set(value):
 		current_enjoyment = clamp(value, 0.0, MAX_ENJOYMENT)
-		enjoyment_updated.emit()
+		enjoyment_updated.emit(current_enjoyment)
 var is_wanting_to_leave: bool
 var leave_countdown: float
 var current_request: String

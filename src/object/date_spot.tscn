@@ -18,6 +18,7 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_103yh"]
+resource_local_to_scene = true
 bg_color = Color(0.6, 0.898039, 0.313726, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rnyd"]
@@ -30,6 +31,10 @@ region = Rect2(2, 2, 26, 28)
 
 [node name="DateSpot" groups=["date_spot", "site"] instance=ExtResource("1_rjstw")]
 script = ExtResource("2_y6rm3")
+default_bar_color = Color(0.599893, 0.898375, 0.313619, 1)
+bad_bar_color = Color(0.9, 0.315, 0.315, 1)
+good_bar_color = Color(0.315, 0.7635, 0.9, 1)
+bar_tween_rate = 20.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 disabled = false
@@ -44,7 +49,7 @@ offset_right = 23.0
 offset_bottom = 11.0
 theme_override_styles/background = SubResource("StyleBoxFlat_bbhen")
 theme_override_styles/fill = SubResource("StyleBoxFlat_103yh")
-value = 10.0
+value = 100.0
 fill_mode = 3
 show_percentage = false
 
