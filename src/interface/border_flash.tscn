@@ -50,6 +50,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_hx0ek")
 
 [node name="Top" type="TextureRect" parent="."]
@@ -58,6 +59,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_g7s4i")
 expand_mode = 1
 
@@ -70,6 +72,7 @@ anchor_bottom = 1.0
 offset_top = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_f4ccd")
 expand_mode = 1
 
@@ -79,6 +82,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 16.0
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_51gnn")
 expand_mode = 1
 
@@ -91,5 +95,6 @@ anchor_bottom = 1.0
 offset_left = -16.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_e7yrs")
 expand_mode = 1

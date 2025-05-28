@@ -23,6 +23,7 @@ var is_in_minigame: bool
 @onready var item_icon: TextureRect = %ItemIcon
 @onready var score: Label = %Score
 @onready var time: Label = %Time
+@onready var border_flash: BorderFlash = %BorderFlash
 
 
 func _ready() -> void:
@@ -62,6 +63,7 @@ func add_angst(value: float) -> void:
 
 
 func _on_leave_counted_down() -> void:
+	border_flash.flash()
 	add_angst(angst_increase_on_leave_count)
 
 
