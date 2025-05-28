@@ -34,8 +34,10 @@ text = "CANCEL"
 
 [node name="StartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lscjg")
+bus = &"SFX"
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jw864")
+bus = &"SFX"
 
 [connection signal="pressed" from="ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]

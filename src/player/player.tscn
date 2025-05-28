@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uxn7kvhogon6"]
+[gd_scene load_steps=17 format=3 uid="uid://uxn7kvhogon6"]
 
 [ext_resource type="Script" uid="uid://dudepurtwqa1u" path="res://src/player/player.gd" id="1_5f2sf"]
 [ext_resource type="Texture2D" uid="uid://5kefsh6ut850" path="res://assets/sprite/characters.png" id="2_jiejy"]
@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://l8fcxxj0u6lm" path="res://assets/sprite/hud_borders.png" id="5_l271a"]
 [ext_resource type="Texture2D" uid="uid://cgcdjywvpg47q" path="res://assets/sprite/portrait_1.atlastex" id="6_jiejy"]
 [ext_resource type="PackedScene" uid="uid://pl2pr7vrysr7" path="res://src/interface/border_flash.tscn" id="6_o822w"]
+[ext_resource type="AudioStream" uid="uid://nc741t6xcvnh" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_Olliewalk_FD1.wav" id="6_ylhto"]
+[ext_resource type="AudioStream" uid="uid://be3c7wo1hju82" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_angst1_FD1.wav" id="8_l271a"]
+[ext_resource type="AudioStream" uid="uid://bii1u567ls2oq" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_angst2_FD1.wav" id="9_8ydov"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2smqc"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_ylhto")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtmpf"]
 atlas = ExtResource("5_l271a")
@@ -44,6 +52,10 @@ move_speed = 300.0
 
 [node name="HeldPartner" type="Sprite2D" parent="Actor"]
 position = Vector2(-8, 1)
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="Actor"]
+stream = SubResource("AudioStreamRandomizer_2smqc")
+bus = &"SFX"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -160,3 +172,11 @@ text_overrun_behavior = 1
 [node name="BorderFlash" parent="HUD" instance=ExtResource("6_o822w")]
 unique_name_in_owner = true
 modulate = Color(1, 0, 0, 0)
+
+[node name="AngstSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_l271a")
+bus = &"SFX"
+
+[node name="AngstSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8ydov")
+bus = &"SFX"

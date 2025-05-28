@@ -20,6 +20,8 @@ const LEAVE_WAIT_COUNT = 5.0
 var id: String
 var date_spot: Site
 
+@onready var joy_restored_sound: AudioStreamPlayer = $JoyRestoredSound
+
 var current_enjoyment: float:
 	set(value):
 		current_enjoyment = clamp(value, 0.0, MAX_ENJOYMENT)
@@ -58,6 +60,7 @@ func finish_request() -> void:
 	_request_counter = request_cooldown
 	current_request = ""
 	request_updated.emit()
+	joy_restored_sound.play()
 
 
 func receive_wrong_food() -> void:
@@ -82,6 +85,7 @@ func receive_bonus_item(item_id: String) -> void:
 	var preference = Globals.PREFERENCES[id]
 	if preference == item_id:
 		restore_enjoyment()
+		joy_restored_sound.play()
 	else:
 		receive_wrong_food()
 

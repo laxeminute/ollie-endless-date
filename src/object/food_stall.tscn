@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc274uw0vlck1"]
+[gd_scene load_steps=11 format=3 uid="uid://cc274uw0vlck1"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_sqpx8"]
 [ext_resource type="Script" uid="uid://faw8h0fktewk" path="res://src/object/food_stall.gd" id="2_j4le3"]
 [ext_resource type="Texture2D" uid="uid://065v87o7n43v" path="res://assets/sprite/stands.png" id="3_a5wou"]
 [ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_n0kvw"]
 [ext_resource type="Texture2D" uid="uid://cdwslrsyynick" path="res://assets/sprite/small_icons.png" id="4_a5wou"]
+[ext_resource type="AudioStream" uid="uid://etu2qosrth0q" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_foodready_FD1.wav" id="6_wjf07"]
+[ext_resource type="AudioStream" uid="uid://bytbtpoexyko8" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_foodstart_FD1.wav" id="6_xtvu6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjf07"]
 atlas = ExtResource("3_n0kvw")
@@ -63,3 +65,11 @@ offset_top = 15.0
 offset_right = 24.0
 offset_bottom = 20.0
 texture = SubResource("AtlasTexture_tg3gd")
+
+[node name="FoodStartSound" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("6_xtvu6")
+bus = &"SFX"
+
+[node name="FoodReadySound" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("6_wjf07")
+bus = &"SFX"

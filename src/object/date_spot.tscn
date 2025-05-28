@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0xvpf2s5mc1n"]
+[gd_scene load_steps=12 format=3 uid="uid://c0xvpf2s5mc1n"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_rjstw"]
 [ext_resource type="Script" uid="uid://chgdv51ujxcj3" path="res://src/object/date_spot.gd" id="2_y6rm3"]
 [ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="4_103yh"]
+[ext_resource type="AudioStream" uid="uid://pc3qvgua56sy" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_Ollietalk1_FD1.wav" id="5_s2bxf"]
 [ext_resource type="Texture2D" uid="uid://jvjknvna7i4d" path="res://assets/sprite/request_food_1.atlastex" id="6_s2bxf"]
+[ext_resource type="AudioStream" uid="uid://cvvgmj5l8cu83" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_Ollietalk2_FD1.wav" id="6_ysjvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbhen"]
 bg_color = Color(0.301961, 0.301961, 0.301961, 1)
@@ -28,6 +30,12 @@ region = Rect2(106, 7, 12, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2bxf"]
 atlas = ExtResource("4_103yh")
 region = Rect2(2, 2, 26, 28)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwnmt"]
+streams_count = 2
+stream_0/stream = ExtResource("5_s2bxf")
+stream_0/weight = 2.0
+stream_1/stream = ExtResource("6_ysjvi")
 
 [node name="DateSpot" groups=["date_spot", "site"] instance=ExtResource("1_rjstw")]
 script = ExtResource("2_y6rm3")
@@ -82,3 +90,7 @@ offset_right = 8.0
 offset_bottom = 19.0
 grow_horizontal = 2
 texture = ExtResource("6_s2bxf")
+
+[node name="ChatSound" type="AudioStreamPlayer" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_mwnmt")
+bus = &"SFX"

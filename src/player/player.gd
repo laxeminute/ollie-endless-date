@@ -30,7 +30,8 @@ var is_in_minigame: bool
 @onready var score: Label = %Score
 @onready var time: Label = %Time
 @onready var border_flash: BorderFlash = %BorderFlash
-
+@onready var angst_sound_1: AudioStreamPlayer = $AngstSound1
+@onready var angst_sound_2: AudioStreamPlayer = $AngstSound2
 
 func _ready() -> void:
 	Globals.leave_counted_down.connect(_on_leave_counted_down)
@@ -75,10 +76,12 @@ func add_angst(value: float) -> void:
 func _on_leave_counted_down() -> void:
 	border_flash.flash()
 	add_angst(angst_increase_on_leave_count)
+	angst_sound_2.play()
 
 
 func _on_wrong_food_given() -> void:
 	add_angst(angst_increase_on_wrong_food)
+	angst_sound_1.play()
 
 
 func _on_minigame_mode(enabled: bool) -> void:
@@ -87,6 +90,7 @@ func _on_minigame_mode(enabled: bool) -> void:
 
 func _on_activity_canceled() -> void:
 	add_angst(angst_increase_on_activity_canceled)
+	angst_sound_1.play()
 
 
 func _get_selected_site() -> Site:
