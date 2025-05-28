@@ -24,6 +24,7 @@ var is_in_minigame: bool
 @onready var score: Label = %Score
 @onready var time: Label = %Time
 
+
 func _ready() -> void:
 	Globals.leave_counted_down.connect(_on_leave_counted_down)
 	Globals.wrong_food_given.connect(_on_wrong_food_given)
@@ -44,7 +45,7 @@ func initialize(map: Map, starting_point: int) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_in_minigame:
 		return
-	
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var site = _get_selected_site()
@@ -84,14 +85,14 @@ func _get_selected_site() -> Site:
 	params.collision_mask = Globals.SITE_COLLISION_LAYER
 	params.collide_with_bodies = false
 	params.collide_with_areas = true
-	
+
 	var areas = space.intersect_point(params, 4)
 	var site: Site = null
 	for i in areas.size():
 		site = areas[i].collider as Site
 		if site:
 			break
-	
+
 	return site
 
 
@@ -113,4 +114,3 @@ func _on_holdable_updated() -> void:
 		item_icon.texture = Globals.Icons[actor.currently_holding.id]
 	else:
 		item_icon.texture = null
-	

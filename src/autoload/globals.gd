@@ -12,9 +12,9 @@ signal minigame_mode_enabled(enabled: bool)
 const SITE_COLLISION_LAYER = 2
 
 const PARTNERS = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"]
-const FOOD_REQUESTS = [ "F1", "F2", "F3", "F4" ]
+const FOOD_REQUESTS = ["F1", "F2", "F3", "F4"]
 const NUM_OF_FOOD = 4
-const GAME_REQUESTS = [ "G1", "G2", "G3", "G4" ]
+const GAME_REQUESTS = ["G1", "G2", "G3", "G4"]
 const NUM_OF_GAME = 4
 const ITEMS = ["I1", "I2"]
 const NUM_OF_ITEM = 2

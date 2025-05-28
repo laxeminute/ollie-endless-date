@@ -4,6 +4,7 @@ extends Node2D
 var id: int
 @export var connections: Array[PathingPoint] = []
 
+
 func initialize(p_id: int) -> void:
 	id = p_id
 	var site := get_site()

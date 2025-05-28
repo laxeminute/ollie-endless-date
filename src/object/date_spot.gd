@@ -10,6 +10,7 @@ var partner: Partner
 @onready var thought_bubble: TextureRect = $ThoughtBubble
 @onready var request_icon: TextureRect = $ThoughtBubble/RequestIcon
 
+
 func _ready() -> void:
 	_on_partner_left()
 	enjoyment_bar.max_value = Partner.MAX_VISIBLE_ENJOYMENT
@@ -37,7 +38,7 @@ func on_actor_arriving(p_actor: Actor) -> void:
 	super(p_actor)
 	if not partner:
 		return
-	
+
 	# actor is holding something
 	if actor.currently_holding:
 		var holdable_id = actor.currently_holding.id
@@ -53,7 +54,7 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		# wrong food
 		else:
 			partner.receive_wrong_food()
-		
+
 		actor.currently_holding = null
 
 
@@ -64,13 +65,13 @@ func on_actor_leaving() -> void:
 		if heading_to and heading_to.is_in_group("game_booth"):
 			heading_to_game_booth = true
 		var requesting_minigame := partner.current_request[0] == "G"
-		
+
 		if heading_to_game_booth and requesting_minigame:
 			actor.currently_holding = partner
 			actor.held_partner.texture = partner.texture
 			partner.follow_actor()
 			_on_partner_left()
-	
+
 	super()
 
 

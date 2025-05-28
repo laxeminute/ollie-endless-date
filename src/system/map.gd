@@ -3,9 +3,10 @@ extends Node2D
 
 var _astar: AStar2D
 
+
 func _ready() -> void:
 	_astar = AStar2D.new()
-	
+
 	for i in get_child_count():
 		var point = get_child(i)
 		if point is PathingPoint:
@@ -13,7 +14,7 @@ func _ready() -> void:
 			_astar.add_point(point.id, point.position)
 		else:
 			push_error("%s is not a PathingPoint" % str(point))
-	
+
 	for i in get_child_count():
 		var point = get_child(i) as PathingPoint
 		if point:
@@ -34,6 +35,6 @@ func get_site_at_point(id: int) -> Site:
 func get_path_stack(start_point: int, end_point: int) -> Array[int]:
 	var id_path = _astar.get_id_path(start_point, end_point)
 	var stack: Array[int] = []
-	for i in range(id_path.size()-1, -1, -1):
+	for i in range(id_path.size() - 1, -1, -1):
 		stack.append(id_path[i])
 	return stack

@@ -8,19 +8,21 @@ var _cook_progress: float
 @onready var speech_bubble: TextureProgressBar = %SpeechBubble
 @onready var check: TextureRect = %Check
 
+
 func _ready() -> void:
 	%RequestIcon.texture = Globals.Icons[food_id]
 	check.hide()
+
 
 func on_actor_arriving(p_actor: Actor) -> void:
 	super(p_actor)
 	if actor.currently_holding:
 		return
-	
+
 	if is_food_ready:
 		is_food_ready = false
 		check.hide()
-		actor.currently_holding = { "id": food_id }
+		actor.currently_holding = {"id": food_id}
 	else:
 		if not is_cooking:
 			_cook_progress = 0.0
@@ -41,7 +43,7 @@ func _update_cook_progress(delta: float) -> void:
 		speech_bubble.value = 0.0
 		# actor is currently present
 		if actor:
-			actor.currently_holding = { "id": food_id }
+			actor.currently_holding = {"id": food_id}
 		else:
 			is_food_ready = true
 			check.show()

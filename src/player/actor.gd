@@ -21,6 +21,7 @@ var _currently_move_toward: Vector2
 
 @onready var held_partner: Sprite2D = $HeldPartner
 
+
 func initialize(map: Map, starting_point: int) -> void:
 	_map = map
 	current_path = []
@@ -33,7 +34,7 @@ func initialize(map: Map, starting_point: int) -> void:
 func _process(delta: float) -> void:
 	if not is_moving:
 		return
-	
+
 	if position.distance_to(_currently_move_toward) > 1.0:
 		position = position.move_toward(_currently_move_toward, move_speed * delta)
 	else:

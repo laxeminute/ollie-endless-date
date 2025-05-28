@@ -30,11 +30,12 @@ var _leave_sec_counter: float
 var _request_counter: float
 var _request_queue: Array[String]
 
+
 func initialize(p_id: String, p_date_spot: Site) -> void:
 	id = p_id
 	date_spot = p_date_spot
 	texture = Globals.Icons[id]
-	
+
 	current_enjoyment = MAX_VISIBLE_ENJOYMENT
 	_request_counter = request_cooldown_on_arrival
 
@@ -134,7 +135,7 @@ func _stop_leave_countdown() -> void:
 
 func _check_request(delta: float) -> void:
 	if current_request.is_empty():
-		_request_counter -= delta 
+		_request_counter -= delta
 		if _request_counter <= 0.0:
 			current_request = _get_next_request()
 			request_updated.emit()
