@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt2tlhl582r2j"]
+
+[ext_resource type="AudioStream" uid="uid://btrcqkk3hpqbr" path="res://assets/audio/SFX/UI/sfx_gameplay_UI_gameover_FD1.wav" id="1_sctgv"]
+[ext_resource type="Script" uid="uid://d3g5cmdqxs2nl" path="res://src/interface/end_screen.gd" id="1_xhq2m"]
+
+[sub_resource type="Gradient" id="Gradient_iuvrl"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sctgv"]
+gradient = SubResource("Gradient_iuvrl")
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhq2m")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_sctgv")
+autoplay = true
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_sctgv")
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -122.0
+offset_right = 220.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Description" type="RichTextLabel" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Ollie tried her hardest, but alas...
+...some things are [color=blue]doomed, sealed to fate.[/color]
+
+Final Score: [color=pink]%05d[/color]
+[/center]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -39.0
+offset_right = 76.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Turn Back Time"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
