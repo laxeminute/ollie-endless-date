@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Globals="*res://src/autoload/globals.gd"
 ActivityOverlay="*res://src/level/activity/activity_overlay.tscn"
+SceneTransition="*res://src/autoload/scene_transition.tscn"
 
 [display]
 

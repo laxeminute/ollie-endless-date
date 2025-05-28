@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmt3f0gx76jkh"]
+[gd_scene load_steps=4 format=3 uid="uid://bmt3f0gx76jkh"]
 
 [ext_resource type="Script" uid="uid://dtek2sckpvmph" path="res://src/interface/title_screen.gd" id="1_igqt4"]
-[ext_resource type="PackedScene" uid="uid://bbtns8kd1br41" path="res://src/level/level.tscn" id="2_6hjt2"]
 
 [sub_resource type="Gradient" id="Gradient_6hjt2"]
 colors = PackedColorArray(0.262911, 0.0954075, 0.0705638, 1, 0.469297, 0.279406, 1.44392e-07, 1)
@@ -17,7 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_igqt4")
-next_scene = ExtResource("2_6hjt2")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

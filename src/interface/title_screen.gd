@@ -1,8 +1,7 @@
 extends Control
 
-@export var next_scene: PackedScene
+const PATH_TO_NEXT: String = "uid://bbtns8kd1br41"
 
 
 func _on_start_button_pressed() -> void:
-	# TODO: loading screen
-	get_tree().change_scene_to_packed(next_scene)
+	SceneTransition.fade_to_scene(PATH_TO_NEXT)
