@@ -12,11 +12,17 @@ const Portraits = [
 	preload("res://assets/sprite/portrait_5.atlastex"),
 ]
 
+@export_group("Difficulty")
 @export var angst_increase_on_leave_count: float = 10.0
 @export var angst_increase_on_wrong_food: float = 5.0
 @export var angst_increase_on_activity_canceled: float = 5.0
+@export_group("Visuals")
+## Update rate of the bar, in angst points per second.
+@export var angst_tween_rate: float = 20.0
+
 var current_angst: float
 var is_in_minigame: bool
+
 @onready var actor: Actor = $Actor
 @onready var avatar: TextureRect = %Avatar
 @onready var angst_bar: TextureProgressBar = %AngstBar
@@ -56,7 +62,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func add_angst(value: float) -> void:
 	current_angst += value
-	angst_bar.value = current_angst
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(angst_bar, "value", current_angst, value / angst_tween_rate)
 	_update_avatar()
 	if current_angst >= MAX_ANGST:
 		max_angst_reached.emit()
