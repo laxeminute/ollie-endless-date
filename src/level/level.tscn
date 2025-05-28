@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xvpf2s5mc1n" path="res://src/object/date_spot.tscn" id="3_r7bvo"]
 [ext_resource type="PackedScene" uid="uid://cc274uw0vlck1" path="res://src/object/food_stall.tscn" id="4_7gcor"]
 [ext_resource type="PackedScene" uid="uid://bfm8k7smmshn" path="res://src/object/game_booth.tscn" id="5_3pn8i"]
-[ext_resource type="PackedScene" uid="uid://byg36wwjyk2i" path="res://src/object/snack_cart.tscn" id="5_p6v4a"]
+[ext_resource type="PackedScene" path="res://src/object/snack_cart.tscn" id="5_p6v4a"]
 [ext_resource type="Script" uid="uid://dnicfld7ad8rd" path="res://src/object/pathing_point.gd" id="7_5suky"]
 [ext_resource type="PackedScene" uid="uid://uxn7kvhogon6" path="res://src/player/player.tscn" id="8_ob0n7"]
 [ext_resource type="PackedScene" uid="uid://bpkg5aejtlcxm" path="res://src/level/activity/activity_overlay.tscn" id="9_p6v4a"]
@@ -291,7 +291,7 @@ connections = [NodePath("../Point19")]
 wait_time = 30.0
 autostart = true
 
-[node name="NextPatner" type="Timer" parent="."]
+[node name="NextPartner" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
 
@@ -316,7 +316,7 @@ grow_vertical = 2
 text = "RANDOM MINIGAME"
 
 [connection signal="timeout" from="BonusItem" to="." method="_on_bonus_item_timeout"]
-[connection signal="timeout" from="NextPatner" to="." method="_on_next_patner_timeout"]
+[connection signal="timeout" from="NextPartner" to="." method="_on_next_partner_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="Map/Point4/GameBooth4"]

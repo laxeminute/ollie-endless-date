@@ -23,14 +23,13 @@ func _ready() -> void:
 	_partner_spawn_order = Globals.PARTNERS.duplicate()
 	_partner_spawn_order.shuffle()
 	_current_spawn_index = 0
-	_on_next_patner_timeout()
-	_on_next_patner_timeout()
+	_on_next_partner_timeout()
+	_on_next_partner_timeout()
 
 
 func _on_max_angst_reached() -> void:
 	# TODO: game over screen
 	print("GAME OVER")
-
 
 
 func _on_bonus_item_timeout() -> void:
@@ -46,7 +45,7 @@ func _get_next_bonus_item() -> String:
 	return _bonus_item_queue.pop_back()
 
 
-func _on_next_patner_timeout() -> void:
+func _on_next_partner_timeout() -> void:
 	if _current_spawn_index >= _partner_spawn_order.size():
 		print("reached max spawn")
 		return
@@ -57,4 +56,3 @@ func _on_next_patner_timeout() -> void:
 
 func _on_button_pressed() -> void:
 	%ActivityOverlay.open(randi_range(0, 3))
-
