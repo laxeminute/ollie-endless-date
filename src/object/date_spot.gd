@@ -1,98 +1,120 @@
 extends Site
 
-const MAX_ENJOYMENT = 50.0
-const MAX_VISIBLE_ENJOYMENT = 40.0
-const LEAVE_WAIT_COUNT = 5.0
+const PartnerScene = preload("res://src/object/partner.tscn")
 
-@export var enjoyment_decrease_rate: float = 1.0
-@export var enjoyment_increase_rate: float = 4.0
-@export var request_cooldown_on_arrival: float = 2.0
-@export var request_cooldown: float = 10.0
+var partner: Partner
 
-var current_enjoyment: float
-var is_wanting_to_leave: bool
-var leave_countdown: float
-
-var _request_counter: float
-var _leave_sec_counter: float
-
-@onready var partner_sprite: Sprite2D = $PartnerSprite
+@onready var partner_anchor: Marker2D = $PartnerAnchor
 @onready var enjoyment_bar: ProgressBar = $EnjoymentBar
 @onready var leave_bar: TextureProgressBar = $LeaveBar
-@onready var thought_bubble: Node2D = $ThoughtBubble
+@onready var thought_bubble: TextureRect = $ThoughtBubble
+@onready var request_icon: TextureRect = $ThoughtBubble/RequestIcon
 
 func _ready() -> void:
-	leave()
-	enjoyment_bar.max_value = MAX_VISIBLE_ENJOYMENT
-	leave_bar.max_value = LEAVE_WAIT_COUNT
+	_on_partner_left()
+	enjoyment_bar.max_value = Partner.MAX_VISIBLE_ENJOYMENT
+	leave_bar.max_value = Partner.LEAVE_WAIT_COUNT
 
 
-func _process(delta: float) -> void:
-	_update_enjoyment(delta)
-	enjoyment_bar.value = current_enjoyment
+func spawn_partner(id: String) -> void:
+	partner = PartnerScene.instantiate()
+	partner_anchor.add_child(partner)
+	partner.request_updated.connect(_update_thought_bubble)
+	partner.enjoyment_updated.connect(_update_enjoyment_bar)
+	partner.leave_countdown_updated.connect(_update_leave_bar)
+	partner.leave_countdown_ended.connect(on_partners_leave_countdown_ended)
+	partner.initialize(id, self)
+	_on_partner_arrived()
 
 
-func arrive() -> void:
-	partner_sprite.show()
+func on_partners_leave_countdown_ended() -> void:
+	partner.queue_free()
+	partner = null
+	_on_partner_left()
+
+
+func on_actor_arriving(p_actor: Actor) -> void:
+	super(p_actor)
+	if not partner:
+		return
+	
+	# actor is holding something
+	if actor.currently_holding:
+		var holdable_id = actor.currently_holding.id
+		if holdable_id == partner.id:
+			_on_returning_from_activity()
+		# correct food
+		elif holdable_id == partner.current_request:
+			partner.finish_request()
+			partner.restore_enjoyment()
+		# bonus item
+		elif Globals.ITEMS.has(holdable_id):
+			partner.receive_bonus_item(holdable_id)
+		# wrong food
+		else:
+			partner.receive_wrong_food()
+		
+		actor.currently_holding = null
+
+
+func on_actor_leaving() -> void:
+	if partner and not partner.current_request.is_empty():
+		var heading_to_game_booth := false
+		var heading_to = actor._map.get_site_at_point(actor.current_path[0])
+		if heading_to and heading_to.is_in_group("game_booth"):
+			heading_to_game_booth = true
+		var requesting_minigame := partner.current_request[0] == "G"
+		
+		if heading_to_game_booth and requesting_minigame:
+			actor.currently_holding = partner
+			actor.held_partner.texture = partner.texture
+			partner.follow_actor()
+			_on_partner_left()
+	
+	super()
+
+
+func _on_partner_arrived() -> void:
+	partner_anchor.show()
 	enjoyment_bar.show()
-	current_enjoyment = MAX_VISIBLE_ENJOYMENT
-	_request_counter = request_cooldown_on_arrival
-	set_process(true)
+	_update_thought_bubble()
 
 
-func leave() -> void:
-	partner_sprite.hide()
+func _on_partner_left() -> void:
+	partner_anchor.hide()
 	enjoyment_bar.hide()
 	leave_bar.hide()
 	thought_bubble.hide()
-	set_process(false)
 
 
-func restore_enjoyment() -> void:
-	current_enjoyment = MAX_ENJOYMENT
-
-
-func get_request() -> void:
-	pass
-
-
-func _update_enjoyment(delta: float) -> void:
-	if not is_actor_present:
-		current_enjoyment -= delta * enjoyment_decrease_rate
-		if current_enjoyment < 0.0:
-			current_enjoyment = 0.0
-			if not is_wanting_to_leave:
-				_start_leave_countdown()
-			else:
-				_update_leave_countdown(delta)
+func _on_returning_from_activity() -> void:
+	partner.returning_with_actor()
+	Globals.minigame_mode_enabled.emit(false)
+	actor.held_partner.texture = null
+	_on_partner_arrived()
+	if partner.current_request.is_empty():
+		partner.restore_enjoyment()
 	else:
-		current_enjoyment += delta * enjoyment_increase_rate
-		if current_enjoyment > MAX_VISIBLE_ENJOYMENT:
-			restore_enjoyment()
-		if is_wanting_to_leave:
-			_stop_leave_countdown()
+		partner.finish_request()
+		partner.ruined_activity()
 
 
-func _start_leave_countdown() -> void:
-	is_wanting_to_leave = true
-	_leave_sec_counter = 1.0
-	leave_countdown = LEAVE_WAIT_COUNT
-	Globals.leave_counted_down.emit()
-	leave_bar.value = 0.0
-	leave_bar.show()
+func _update_enjoyment_bar() -> void:
+	if not partner:
+		return
+	enjoyment_bar.value = partner.current_enjoyment
 
 
-func _update_leave_countdown(delta: float) -> void:
-	_leave_sec_counter -= delta
-	if _leave_sec_counter <= 0.0:
-		_leave_sec_counter = 1.0
-		leave_countdown -= 1.0
-		Globals.leave_counted_down.emit()
-	leave_bar.value = LEAVE_WAIT_COUNT - leave_countdown
-	if leave_countdown <= 0.0:
-		leave()
+func _update_thought_bubble() -> void:
+	if not partner or partner.current_request.is_empty():
+		thought_bubble.hide()
+	else:
+		request_icon.texture = Globals.Icons[partner.current_request]
+		thought_bubble.show()
 
 
-func _stop_leave_countdown() -> void:
-	is_wanting_to_leave = false
-	leave_bar.hide()
+func _update_leave_bar() -> void:
+	if not partner:
+		return
+	leave_bar.visible = partner.is_wanting_to_leave
+	leave_bar.value = Partner.LEAVE_WAIT_COUNT - partner.leave_countdown

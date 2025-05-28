@@ -1,4 +1,7 @@
+class_name Actor
 extends Sprite2D
+
+signal holdable_updated
 
 @export var move_speed: float = 200.0
 
@@ -6,9 +9,17 @@ var current_path: Array[int]
 var current_point: int
 var is_moving: bool
 var current_site: Site
+var currently_holding:
+	get:
+		return currently_holding
+	set(value):
+		currently_holding = value
+		holdable_updated.emit()
 
 var _map: Map
 var _currently_move_toward: Vector2
+
+@onready var held_partner: Sprite2D = $HeldPartner
 
 func initialize(map: Map, starting_point: int) -> void:
 	_map = map
@@ -45,7 +56,7 @@ func move_to(end_point: int) -> void:
 
 func on_arriving_at_site() -> void:
 	var site = _map.get_site_at_point(current_point)
-	site.on_actor_arriving()
+	site.on_actor_arriving(self)
 	current_site = site
 
 

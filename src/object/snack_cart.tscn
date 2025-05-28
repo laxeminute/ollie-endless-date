@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://byg36wwjyk2i"]
+
+[ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_oyg2a"]
+[ext_resource type="Script" uid="uid://bpvk1crhkfemi" path="res://src/object/snack_cart.gd" id="2_mmpvh"]
+[ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_88lr6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwna0"]
+atlas = ExtResource("3_88lr6")
+region = Rect2(35, 3, 26, 25)
+
+[node name="SnackCart" groups=["site", "snack_cart"] instance=ExtResource("1_oyg2a")]
+script = ExtResource("2_mmpvh")
+
+[node name="CollisionShape2D" parent="." index="0"]
+disabled = false
+debug_color = Color(0.672276, 0.354122, 0.916731, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+hframes = 4
+vframes = 2
+
+[node name="SpeechBubble" type="TextureRect" parent="." index="2"]
+offset_left = -13.0
+offset_top = -39.0
+offset_right = 13.0
+offset_bottom = -14.0
+texture = SubResource("AtlasTexture_gwna0")
+
+[node name="ItemIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 19.0
+grow_horizontal = 2
