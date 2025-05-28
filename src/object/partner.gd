@@ -11,7 +11,7 @@ const MAX_VISIBLE_ENJOYMENT = 40.0
 const LEAVE_WAIT_COUNT = 5.0
 
 @export var enjoyment_decrease_rate: float = 1.0
-@export var enjoyment_increase_rate: float = 4.0
+@export var enjoyment_increase_rate: float = 8.0
 @export var request_cooldown_on_arrival: float = 2.0
 @export var request_cooldown: float = 10.0
 @export var enjoyment_decrease_on_wrong_food: float = 20.0

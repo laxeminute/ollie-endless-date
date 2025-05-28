@@ -311,30 +311,15 @@ connections = [NodePath("../Point19")]
 [node name="Player" parent="." instance=ExtResource("8_ob0n7")]
 
 [node name="BonusItem" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 20.0
 autostart = true
 
 [node name="NextPartner" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
 
-[node name="Button" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 312.0
-offset_top = 241.0
-offset_right = 476.0
-offset_bottom = 268.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "RANDOM MINIGAME"
-
 [connection signal="timeout" from="BonusItem" to="." method="_on_bonus_item_timeout"]
 [connection signal="timeout" from="NextPartner" to="." method="_on_next_partner_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="Map/Point4/GameBooth4"]
 [editable path="Map/Point5/GameBooth1"]
