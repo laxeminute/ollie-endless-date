@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8t5u10esm4f6"]
+
+[ext_resource type="Script" uid="uid://0uk04lu0r858" path="res://src/level/activity/ring_toss/ring_toss_activity.gd" id="1_ki8va"]
+[ext_resource type="PackedScene" uid="uid://b368s1iv5joem" path="res://src/level/activity/ring_toss/ring_number.tscn" id="2_i7h64"]
+
+[sub_resource type="Gradient" id="Gradient_ji0ru"]
+colors = PackedColorArray(0, 0, 0, 0.501961, 0.262745, 0.541176, 0.137255, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7g0xy"]
+gradient = SubResource("Gradient_ji0ru")
+width = 192
+height = 192
+
+[node name="RingTossActivity" type="Node2D"]
+script = ExtResource("1_ki8va")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_7g0xy")
+metadata/_edit_lock_ = true
+
+[node name="Question" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.0
+offset_top = -93.0
+offset_right = 32.0
+offset_bottom = -70.0
+grow_horizontal = 2
+text = "3 + 2 = ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Numbers" type="CanvasGroup" parent="."]
+
+[node name="RingNumber1" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(-52, -44)
+
+[node name="RingNumber2" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(0, -44)
+
+[node name="RingNumber3" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(52, -44)
+
+[node name="RingNumber4" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(-52, 8)
+
+[node name="RingNumber5" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(0, 8)
+
+[node name="RingNumber6" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(52, 8)
+
+[node name="RingNumber7" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(-52, 60)
+
+[node name="RingNumber8" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(0, 60)
+
+[node name="RingNumber9" parent="Numbers" instance=ExtResource("2_i7h64")]
+position = Vector2(52, 60)

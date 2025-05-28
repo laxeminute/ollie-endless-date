@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3qbvcbj5avoy"]
+
+[ext_resource type="PackedScene" uid="uid://cawcs6blimd6n" path="res://src/level/activity/sharpshooting/target.tscn" id="1_bvick"]
+[ext_resource type="Script" uid="uid://p5evdjf50hk7" path="res://src/level/activity/sharpshooting/sharpshooting_activity.gd" id="1_tlbpb"]
+[ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="3_txmst"]
+
+[sub_resource type="Gradient" id="Gradient_8152h"]
+offsets = PackedFloat32Array(0, 0.993506)
+colors = PackedColorArray(0, 0, 0, 0.501961, 1, 1, 1, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvick"]
+gradient = SubResource("Gradient_8152h")
+width = 192
+height = 192
+
+[sub_resource type="Gradient" id="Gradient_tlbpb"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_txmst"]
+gradient = SubResource("Gradient_tlbpb")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlbpb"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txmst"]
+size = Vector2(192, 192)
+
+[node name="SharpshootingActivity" type="Node2D"]
+script = ExtResource("1_tlbpb")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bvick")
+metadata/_edit_lock_ = true
+
+[node name="Targets" type="CanvasGroup" parent="."]
+
+[node name="Target" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(-60, -50)
+
+[node name="Target2" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(0, -50)
+
+[node name="Target3" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(60, -50)
+
+[node name="Target4" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(-31, 0)
+
+[node name="Target5" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(30, 0)
+
+[node name="Target6" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(-52, 50)
+
+[node name="Target7" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(8, 50)
+
+[node name="Target8" parent="Targets" instance=ExtResource("1_bvick")]
+position = Vector2(68, 50)
+
+[node name="AimY" type="Line2D" parent="."]
+points = PackedVector2Array(-96, 0, 96, 0)
+width = 2.0
+
+[node name="AimX" type="Line2D" parent="."]
+points = PackedVector2Array(0, -96, 0, 96)
+width = 2.0
+
+[node name="Crosshair" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+texture = SubResource("GradientTexture2D_txmst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crosshair"]
+shape = SubResource("RectangleShape2D_tlbpb")
+
+[node name="FullArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullArea"]
+shape = SubResource("RectangleShape2D_txmst")
+debug_color = Color(0.438457, 0.454766, 1, 0.42)
+
+[node name="ClickDetector" type="Node" parent="FullArea" node_paths=PackedStringArray("area")]
+script = ExtResource("3_txmst")
+area = NodePath("..")
+metadata/_custom_type_script = "uid://d175w5sjdjnup"
+
+[connection signal="clicked" from="FullArea/ClickDetector" to="." method="_on_click_detector_clicked"]

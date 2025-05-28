@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxje2lxp6qxfr"]
+
+[ext_resource type="Script" uid="uid://dlyfrktkbp22a" path="res://src/level/activity/goldfish/fish.gd" id="1_527fu"]
+
+[sub_resource type="Gradient" id="Gradient_527fu"]
+offsets = PackedFloat32Array(0.0194805, 1)
+colors = PackedColorArray(1, 0, 0, 0.423529, 0.572669, 1.14311e-06, 5.77569e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k085a"]
+gradient = SubResource("Gradient_527fu")
+width = 8
+height = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_527fu"]
+radius = 1.0
+height = 8.0
+
+[node name="Fish" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_527fu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_k085a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_527fu")

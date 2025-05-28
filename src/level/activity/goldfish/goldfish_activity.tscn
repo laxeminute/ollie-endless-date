@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccaep7x1vwor2"]
+
+[ext_resource type="Script" uid="uid://dbxhitcs013rf" path="res://src/level/activity/goldfish/goldfish_activity.gd" id="1_kstk1"]
+[ext_resource type="PackedScene" uid="uid://d4c6vhxq7lciu" path="res://src/level/activity/goldfish/catcher.tscn" id="3_aertf"]
+[ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="4_0fyby"]
+
+[sub_resource type="Gradient" id="Gradient_8152h"]
+offsets = PackedFloat32Array(0.012987, 0.993506)
+colors = PackedColorArray(0, 1, 1, 0.501961, 0, 0, 1, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvick"]
+gradient = SubResource("Gradient_8152h")
+width = 192
+height = 192
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i03pl"]
+size = Vector2(192, 192)
+
+[node name="GoldfishActivity" type="Node2D"]
+script = ExtResource("1_kstk1")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bvick")
+metadata/_edit_lock_ = true
+
+[node name="Catcher" parent="." instance=ExtResource("3_aertf")]
+z_index = 1
+collision_layer = 128
+
+[node name="Fishes" type="CanvasGroup" parent="."]
+
+[node name="FullArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullArea"]
+shape = SubResource("RectangleShape2D_i03pl")
+debug_color = Color(0.438457, 0.454766, 1, 0.42)
+
+[node name="ClickDetector" type="Node" parent="FullArea" node_paths=PackedStringArray("area")]
+script = ExtResource("4_0fyby")
+area = NodePath("..")
+metadata/_custom_type_script = "uid://d175w5sjdjnup"
+
+[connection signal="caught_fish" from="Catcher" to="." method="_on_catcher_caught_fish"]
+[connection signal="clicked" from="FullArea/ClickDetector" to="." method="_on_click_detector_clicked"]

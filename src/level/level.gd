@@ -16,6 +16,7 @@ var _bonus_item_queue: Array
 @onready var player: Player = $Player
 @onready var snack_carts = get_tree().get_nodes_in_group("snack_cart")
 
+
 func _ready() -> void:
 	player.initialize(map, player_starting_point)
 	player.max_angst_reached.connect(_on_max_angst_reached)
@@ -27,7 +28,9 @@ func _ready() -> void:
 
 
 func _on_max_angst_reached() -> void:
+	# TODO: game over screen
 	print("GAME OVER")
+
 
 
 func _on_bonus_item_timeout() -> void:
@@ -50,3 +53,8 @@ func _on_next_patner_timeout() -> void:
 	var next_partner = _partner_spawn_order[_current_spawn_index]
 	date_location_spawn_order[_current_spawn_index].spawn_partner(next_partner)
 	_current_spawn_index += 1
+
+
+func _on_button_pressed() -> void:
+	%ActivityOverlay.open(randi_range(0, 3))
+

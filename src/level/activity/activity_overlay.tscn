@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpkg5aejtlcxm"]
+
+[ext_resource type="Script" uid="uid://hofypmwrvtqf" path="res://src/level/activity/activity_overlay.gd" id="1_k8w4x"]
+[ext_resource type="PackedScene" uid="uid://ccaep7x1vwor2" path="res://src/level/activity/goldfish/goldfish_activity.tscn" id="2_p3a7k"]
+[ext_resource type="PackedScene" uid="uid://b3qbvcbj5avoy" path="res://src/level/activity/sharpshooting/sharpshooting_activity.tscn" id="2_yqi1v"]
+[ext_resource type="PackedScene" uid="uid://b8t5u10esm4f6" path="res://src/level/activity/ring_toss/ring_toss_activity.tscn" id="4_jw864"]
+[ext_resource type="AudioStream" uid="uid://t3grw2hdhmvf" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_minigamestart_FD1.wav" id="4_lscjg"]
+[ext_resource type="PackedScene" uid="uid://dfeupumuax17r" path="res://src/level/activity/garapon/garapon_activity.tscn" id="5_03x02"]
+[ext_resource type="AudioStream" uid="uid://cw1mtb5ih5pmm" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_minigamewin_FD1.wav" id="5_jw864"]
+
+[node name="ActivityOverlay" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.313726)
+script = ExtResource("1_k8w4x")
+activity_scenes = Array[PackedScene]([ExtResource("2_yqi1v"), ExtResource("2_p3a7k"), ExtResource("4_jw864"), ExtResource("5_03x02")])
+
+[node name="CancelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 169.0
+offset_right = 439.0
+offset_bottom = 200.0
+text = "CANCEL"
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lscjg")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jw864")
+
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]

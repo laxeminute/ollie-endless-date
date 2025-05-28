@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://b368s1iv5joem"]
+
+[ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="1_2x3bx"]
+[ext_resource type="Script" uid="uid://cw5vvpp7071oo" path="res://src/level/activity/ring_toss/ring_number.gd" id="1_h0fmg"]
+[ext_resource type="Texture2D" uid="uid://165xvbkbeqr8" path="res://assets/sprite/numbers.png" id="2_il3e2"]
+
+[sub_resource type="Gradient" id="Gradient_h0fmg"]
+offsets = PackedFloat32Array(0, 0.922078, 1)
+colors = PackedColorArray(0.557592, 0.361763, 2.88785e-07, 1, 0.557592, 0.361763, 2.88785e-07, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_il3e2"]
+gradient = SubResource("Gradient_h0fmg")
+width = 8
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_il3e2"]
+offsets = PackedFloat32Array(0.792208, 0.811688, 0.954545, 1)
+colors = PackedColorArray(0.878431, 0.203922, 0, 0, 0.87854, 0.205343, 1.92523e-07, 1, 0.87854, 0.205343, 1.92523e-07, 1, 0.878431, 0.203922, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i6rw6"]
+gradient = SubResource("Gradient_il3e2")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4vgj"]
+size = Vector2(48, 48)
+
+[node name="RingNumber" type="Area2D"]
+script = ExtResource("1_h0fmg")
+
+[node name="Number" type="Sprite2D" parent="."]
+texture = ExtResource("2_il3e2")
+region_enabled = true
+region_rect = Rect2(48, 96, 48, 48)
+
+[node name="Peg" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("GradientTexture2D_il3e2")
+
+[node name="Ring" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+z_index = 1
+position = Vector2(0, 9)
+texture = SubResource("GradientTexture2D_i6rw6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h4vgj")
+
+[node name="ClickDetector" type="Node" parent="." node_paths=PackedStringArray("area")]
+script = ExtResource("1_2x3bx")
+area = NodePath("..")
+metadata/_custom_type_script = "uid://d175w5sjdjnup"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="clicked" from="ClickDetector" to="." method="_on_click_detector_clicked"]

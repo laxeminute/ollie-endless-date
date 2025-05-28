@@ -21,8 +21,10 @@ func on_actor_arriving(p_actor: Actor) -> void:
 	if _partner.current_request != game_id:
 		actor.move_to(_return_location)
 	else:
+		# TODO: open minigame
 		#open_minigame()
 		
+		# v REMOVE THIS IF OPEN MINIGAME IMPLEMENTED v
 		# randomly simulate win or canceled
 		if randf() > 0.2:
 			on_minigame_won()
@@ -30,6 +32,7 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		else:
 			on_minigame_exited()
 			print("minigame exited")
+		# ^ REMOVE THIS ^
 
 
 func on_actor_leaving() -> void:
