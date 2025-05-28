@@ -1,11 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfm8k7smmshn"]
+[gd_scene load_steps=6 format=3 uid="uid://bfm8k7smmshn"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_miwc3"]
 [ext_resource type="Script" uid="uid://c0xypmsx7d5sv" path="res://src/object/game_booth.gd" id="2_n38kt"]
+[ext_resource type="Texture2D" uid="uid://065v87o7n43v" path="res://assets/sprite/stands.png" id="3_ghnyf"]
+[ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_pl7kc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghnyf"]
+atlas = ExtResource("3_pl7kc")
+region = Rect2(35, 3, 26, 25)
 
 [node name="GameBooth" groups=["game_booth", "site"] instance=ExtResource("1_miwc3")]
 script = ExtResource("2_n38kt")
+game_id = ""
 
 [node name="CollisionShape2D" parent="." index="0"]
 disabled = false
 debug_color = Color(0, 0.549662, 0.92526, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_ghnyf")
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="SpeechBubble" type="TextureRect" parent="." index="2"]
+offset_left = -13.0
+offset_top = -39.0
+offset_right = 13.0
+offset_bottom = -14.0
+texture = SubResource("AtlasTexture_ghnyf")
+
+[node name="RequestIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 19.0
+grow_horizontal = 2

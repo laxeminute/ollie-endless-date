@@ -2,11 +2,11 @@ class_name Site
 extends Area2D
 
 var location_id: int
-var is_actor_present: bool
+var actor: Actor = null
 
-func on_actor_arriving() -> void:
-	is_actor_present = true
+func on_actor_arriving(p_actor: Actor) -> void:
+	actor = p_actor
 
 
 func on_actor_leaving() -> void:
-	is_actor_present = false
+	actor = null

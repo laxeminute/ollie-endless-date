@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnstieboatcpu"]
+
+[ext_resource type="Script" uid="uid://o31arfwxxr1u" path="res://src/object/partner.gd" id="1_58wtq"]
+
+[node name="Partner" type="Sprite2D"]
+script = ExtResource("1_58wtq")

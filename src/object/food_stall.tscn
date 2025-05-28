@@ -1,11 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc274uw0vlck1"]
+[gd_scene load_steps=9 format=3 uid="uid://cc274uw0vlck1"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_sqpx8"]
 [ext_resource type="Script" uid="uid://faw8h0fktewk" path="res://src/object/food_stall.gd" id="2_j4le3"]
+[ext_resource type="Texture2D" uid="uid://065v87o7n43v" path="res://assets/sprite/stands.png" id="3_a5wou"]
+[ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_n0kvw"]
+[ext_resource type="Texture2D" uid="uid://cdwslrsyynick" path="res://assets/sprite/small_icons.png" id="4_a5wou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjf07"]
+atlas = ExtResource("3_n0kvw")
+region = Rect2(35, 3, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtvu6"]
+atlas = ExtResource("3_n0kvw")
+region = Rect2(35, 3, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg3gd"]
+atlas = ExtResource("4_a5wou")
+region = Rect2(17, 2, 6, 5)
 
 [node name="FoodStall" groups=["food_stall", "site"] instance=ExtResource("1_sqpx8")]
 script = ExtResource("2_j4le3")
+food_id = ""
+cook_duration = 4.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 disabled = false
 debug_color = Color(0.678766, 0.49921, 0.204809, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_a5wou")
+hframes = 4
+vframes = 2
+
+[node name="SpeechBubble" type="TextureProgressBar" parent="." index="2"]
+unique_name_in_owner = true
+offset_left = -13.0
+offset_top = -39.0
+offset_right = 13.0
+offset_bottom = -14.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_wjf07")
+texture_progress = SubResource("AtlasTexture_xtvu6")
+tint_progress = Color(0.5, 0.5, 0.5, 1)
+
+[node name="RequestIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 19.0
+grow_horizontal = 2
+
+[node name="Check" type="TextureRect" parent="SpeechBubble" index="1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 24.0
+offset_bottom = 20.0
+texture = SubResource("AtlasTexture_tg3gd")
