@@ -7,7 +7,8 @@ var is_food_ready: bool
 var _cook_progress: float
 @onready var speech_bubble: TextureProgressBar = %SpeechBubble
 @onready var check: TextureRect = %Check
-
+@onready var food_start_sound: AudioStreamPlayer = $FoodStartSound
+@onready var food_ready_sound: AudioStreamPlayer = $FoodReadySound
 
 func _ready() -> void:
 	%RequestIcon.texture = Globals.Icons[food_id]
@@ -27,6 +28,7 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		if not is_cooking:
 			_cook_progress = 0.0
 			is_cooking = true
+			food_start_sound.play()
 
 
 func _process(delta: float) -> void:
@@ -47,3 +49,4 @@ func _update_cook_progress(delta: float) -> void:
 		else:
 			is_food_ready = true
 			check.show()
+			food_ready_sound.play()

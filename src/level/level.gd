@@ -48,12 +48,7 @@ func _get_next_bonus_item() -> String:
 
 func _on_next_partner_timeout() -> void:
 	if _current_spawn_index >= _partner_spawn_order.size():
-		print("reached max spawn")
 		return
 	var next_partner = _partner_spawn_order[_current_spawn_index]
 	date_location_spawn_order[_current_spawn_index].spawn_partner(next_partner)
 	_current_spawn_index += 1
-
-
-func _on_button_pressed() -> void:
-	ActivityOverlay.open(randi_range(0, 3))

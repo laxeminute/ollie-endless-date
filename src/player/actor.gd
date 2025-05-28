@@ -20,7 +20,7 @@ var _map: Map
 var _currently_move_toward: Vector2
 
 @onready var held_partner: Sprite2D = $HeldPartner
-
+@onready var walk_sound: AudioStreamPlayer = $WalkSound
 
 func initialize(map: Map, starting_point: int) -> void:
 	_map = map
@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 func move_to(end_point: int) -> void:
 	current_path = _map.get_path_stack(current_point, end_point)
 	is_moving = true
+	walk_sound.play()
 	on_leaving_site()
 
 

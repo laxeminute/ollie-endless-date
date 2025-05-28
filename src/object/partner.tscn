@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnstieboatcpu"]
+[gd_scene load_steps=3 format=3 uid="uid://dnstieboatcpu"]
 
 [ext_resource type="Script" uid="uid://o31arfwxxr1u" path="res://src/object/partner.gd" id="1_58wtq"]
+[ext_resource type="AudioStream" uid="uid://lhbv7pie8cbl" path="res://assets/audio/SFX/NPC/sfx_gameplay_NPC_joyrestored_FD1.wav" id="2_t5wmj"]
 
 [node name="Partner" type="Sprite2D"]
 script = ExtResource("1_58wtq")
+
+[node name="JoyRestoredSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_t5wmj")
+bus = &"SFX"

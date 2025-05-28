@@ -16,7 +16,7 @@ var bar_tween: Tween
 @onready var leave_bar: TextureProgressBar = $LeaveBar
 @onready var thought_bubble: TextureRect = $ThoughtBubble
 @onready var request_icon: TextureRect = $ThoughtBubble/RequestIcon
-
+@onready var chat_sound: AudioStreamPlayer = $ChatSound
 
 func _ready() -> void:
 	_on_partner_left()
@@ -62,8 +62,10 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		# wrong food
 		else:
 			partner.receive_wrong_food()
-
 		actor.currently_holding = null
+	# actor is visiting empty handed
+	else:
+		chat_sound.play()
 
 
 func on_actor_leaving() -> void:

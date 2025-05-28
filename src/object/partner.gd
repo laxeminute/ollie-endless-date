@@ -11,7 +11,7 @@ const MAX_VISIBLE_ENJOYMENT = 40.0
 const LEAVE_WAIT_COUNT = 5.0
 
 @export var enjoyment_decrease_rate: float = 1.0
-@export var enjoyment_increase_rate: float = 4.0
+@export var enjoyment_increase_rate: float = 8.0
 @export var request_cooldown_on_arrival: float = 2.0
 @export var request_cooldown: float = 10.0
 @export var enjoyment_decrease_on_wrong_food: float = 20.0
@@ -19,6 +19,8 @@ const LEAVE_WAIT_COUNT = 5.0
 
 var id: String
 var date_spot: Site
+
+@onready var joy_restored_sound: AudioStreamPlayer = $JoyRestoredSound
 
 var current_enjoyment: float:
 	set(value):
@@ -58,6 +60,7 @@ func finish_request() -> void:
 	_request_counter = request_cooldown
 	current_request = ""
 	request_updated.emit()
+	joy_restored_sound.play()
 
 
 func receive_wrong_food() -> void:
@@ -82,6 +85,7 @@ func receive_bonus_item(item_id: String) -> void:
 	var preference = Globals.PREFERENCES[id]
 	if preference == item_id:
 		restore_enjoyment()
+		joy_restored_sound.play()
 	else:
 		receive_wrong_food()
 
