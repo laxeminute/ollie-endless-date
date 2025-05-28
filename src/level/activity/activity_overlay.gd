@@ -1,9 +1,14 @@
-class_name ActivityOverlay
-extends Control
+extends CanvasLayer
 
 signal finished(success: bool)
 
 const ACTIVITY_HEIGHT = 192
+const ID_TO_INT = {
+	"G1": 0,
+	"G2": 1,
+	"G3": 2,
+	"G4": 3,
+}
 
 @export var activity_scenes: Array[PackedScene]
 @export var intro_tween_duration: float = 0.5
@@ -12,11 +17,17 @@ const ACTIVITY_HEIGHT = 192
 var current_activity: Node2D
 var offscreen_point: Vector2:
 	get:
-		return Vector2(size.x / 2, size.y + ACTIVITY_HEIGHT)
+		return Vector2(full_rect.size.x / 2, full_rect.size.y + ACTIVITY_HEIGHT)
 var exit_tween: Tween
 
 @onready var start_sound: AudioStreamPlayer = $StartSound
 @onready var win_sound: AudioStreamPlayer = $WinSound
+@onready var full_rect: Control = $ColorRect
+@onready var cancel_button: Button = %CancelButton
+
+
+func open_string(id: String):
+	open(ID_TO_INT[id])
 
 
 func open(id: int):
@@ -31,13 +42,15 @@ func open(id: int):
 
 	# transition
 	current_activity.process_mode = Node.PROCESS_MODE_DISABLED
+	current_activity.position = offscreen_point
 	var intro_tween := create_tween()
 	intro_tween.set_ease(Tween.EASE_OUT)
 	intro_tween.set_trans(Tween.TRANS_BACK)
-	intro_tween.tween_property(current_activity, "position", size / 2, intro_tween_duration).from(
-		offscreen_point
+	intro_tween.tween_property(
+		current_activity, "position", full_rect.size / 2, intro_tween_duration
 	)
 	intro_tween.tween_callback(current_activity.set.bind("process_mode", Node.PROCESS_MODE_INHERIT))
+	intro_tween.tween_callback(cancel_button.show)
 
 
 func close(success: bool) -> void:
@@ -46,6 +59,7 @@ func close(success: bool) -> void:
 			return
 	if success:
 		win_sound.play()
+	cancel_button.hide()
 	current_activity.process_mode = Node.PROCESS_MODE_DISABLED
 	exit_tween = create_tween()
 

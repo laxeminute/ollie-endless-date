@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbtns8kd1br41"]
+[gd_scene load_steps=10 format=3 uid="uid://bbtns8kd1br41"]
 
 [ext_resource type="Script" uid="uid://u5amyd2v14wq" path="res://src/level/level.gd" id="1_3pn8i"]
 [ext_resource type="Texture2D" uid="uid://rrqxgv0lkn5q" path="res://assets/sprite/festival_bg.png" id="1_gt4la"]
@@ -6,10 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c0xvpf2s5mc1n" path="res://src/object/date_spot.tscn" id="3_r7bvo"]
 [ext_resource type="PackedScene" uid="uid://cc274uw0vlck1" path="res://src/object/food_stall.tscn" id="4_7gcor"]
 [ext_resource type="PackedScene" uid="uid://bfm8k7smmshn" path="res://src/object/game_booth.tscn" id="5_3pn8i"]
-[ext_resource type="PackedScene" path="res://src/object/snack_cart.tscn" id="5_p6v4a"]
+[ext_resource type="PackedScene" uid="uid://byg36wwjyk2i" path="res://src/object/snack_cart.tscn" id="5_p6v4a"]
 [ext_resource type="Script" uid="uid://dnicfld7ad8rd" path="res://src/object/pathing_point.gd" id="7_5suky"]
 [ext_resource type="PackedScene" uid="uid://uxn7kvhogon6" path="res://src/player/player.tscn" id="8_ob0n7"]
-[ext_resource type="PackedScene" uid="uid://bpkg5aejtlcxm" path="res://src/level/activity/activity_overlay.tscn" id="9_p6v4a"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("date_location_spawn_order")]
 script = ExtResource("1_3pn8i")
@@ -294,12 +293,6 @@ autostart = true
 [node name="NextPartner" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ActivityOverlay" parent="CanvasLayer" instance=ExtResource("9_p6v4a")]
-unique_name_in_owner = true
-visible = false
 
 [node name="Button" type="Button" parent="."]
 anchors_preset = 8

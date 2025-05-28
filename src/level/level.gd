@@ -55,4 +55,4 @@ func _on_next_partner_timeout() -> void:
 
 
 func _on_button_pressed() -> void:
-	%ActivityOverlay.open(randi_range(0, 3))
+	ActivityOverlay.open(randi_range(0, 3))
