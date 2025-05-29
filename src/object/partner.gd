@@ -11,7 +11,7 @@ const MAX_VISIBLE_ENJOYMENT = 40.0
 const LEAVE_WAIT_COUNT = 5.0
 
 @export var enjoyment_decrease_rate: float = 1.0
-@export var enjoyment_increase_rate: float = 8.0
+@export var enjoyment_increase_rate: float = 5.0
 @export var request_cooldown_on_arrival: float = 2.0
 @export var request_cooldown: float = 10.0
 @export var enjoyment_decrease_on_wrong_food: float = 20.0
@@ -52,20 +52,53 @@ func _process(delta: float) -> void:
 	_check_request(delta)
 
 
-func restore_enjoyment() -> void:
-	current_enjoyment = MAX_ENJOYMENT
+func receive_item(item_id: String) -> void:
+	# correct food
+	if item_id == current_request:
+		finish_request()
+		receive_correct_requested_food()
+	# bonus item
+	elif Globals.ITEMS.has(item_id):
+		var preference = Globals.PREFERENCES[id]
+		if preference == item_id:
+			receive_preferred_item()
+		else:
+			receive_wrong_food()
+	# wrong food
+	else:
+		finish_request()
+		receive_wrong_food()
 
 
 func finish_request() -> void:
 	_request_counter = request_cooldown
 	current_request = ""
 	request_updated.emit()
-	joy_restored_sound.play()
+
+
+func receive_correct_requested_food() -> void:
+	_restore_enjoyment()
+	ScoreTracker.correct_food_given.emit()
+
+
+func receive_preferred_item() -> void:
+	_restore_enjoyment()
+	ScoreTracker.correct_preference_given.emit()
 
 
 func receive_wrong_food() -> void:
 	current_enjoyment -= enjoyment_decrease_on_wrong_food
 	Globals.wrong_food_given.emit()
+
+
+func activity_successful() -> void:
+	_restore_enjoyment()
+	ScoreTracker.activity_successful.emit()
+
+
+func activity_canceled() -> void:
+	current_enjoyment -= enjoyment_decrease_on_canceled_activity
+	Globals.activity_canceled.emit()
 
 
 func follow_actor() -> void:
@@ -76,18 +109,9 @@ func returning_with_actor() -> void:
 	is_following_actor = false
 
 
-func ruined_activity() -> void:
-	current_enjoyment -= enjoyment_decrease_on_canceled_activity
-	Globals.activity_canceled.emit()
-
-
-func receive_bonus_item(item_id: String) -> void:
-	var preference = Globals.PREFERENCES[id]
-	if preference == item_id:
-		restore_enjoyment()
-		joy_restored_sound.play()
-	else:
-		receive_wrong_food()
+func _restore_enjoyment() -> void:
+	current_enjoyment = MAX_ENJOYMENT
+	joy_restored_sound.play()
 
 
 func _update_enjoyment(delta: float) -> void:
@@ -100,8 +124,8 @@ func _update_enjoyment(delta: float) -> void:
 				_update_leave_countdown(delta)
 	else:
 		current_enjoyment += delta * enjoyment_increase_rate
-		if current_enjoyment > MAX_VISIBLE_ENJOYMENT:
-			restore_enjoyment()
+		if current_enjoyment > MAX_VISIBLE_ENJOYMENT and current_enjoyment < MAX_ENJOYMENT:
+			_restore_enjoyment()
 		if is_wanting_to_leave:
 			_stop_leave_countdown()
 

@@ -123,7 +123,6 @@ grow_vertical = 2
 stretch_mode = 3
 
 [node name="Score" type="Control" parent="HUD"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -132,7 +131,7 @@ layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 88.0
-offset_bottom = 31.0
+offset_bottom = 36.0
 texture = SubResource("AtlasTexture_q0oqu")
 patch_margin_left = 2
 patch_margin_top = 2
@@ -141,33 +140,43 @@ patch_margin_bottom = 2
 
 [node name="Label" type="Label" parent="HUD/Score/Rect"]
 layout_mode = 0
-offset_left = 4.0
-offset_right = 46.0
-offset_bottom = 12.0
-theme_override_font_sizes/font_size = 8
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 47.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 9
 text = "score"
 
 [node name="Score" type="Label" parent="HUD/Score/Rect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 4.0
-offset_top = 12.0
-offset_right = 80.0
-offset_bottom = 24.0
-theme_override_font_sizes/font_size = 8
+offset_left = 5.0
+offset_top = 16.0
+offset_right = 81.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 9
 text = "0000000200"
 
 [node name="Time" type="Label" parent="HUD/Score/Rect"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 34.0
-offset_top = 1.0
-offset_right = 80.0
-offset_bottom = 13.0
-theme_override_font_sizes/font_size = 8
-text = "04:52.20"
+offset_left = 35.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 9
+text = "0:00"
 horizontal_alignment = 2
 text_overrun_behavior = 1
+
+[node name="AddedScore" type="Label" parent="HUD/Score/Rect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 21.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 9
 
 [node name="BorderFlash" parent="HUD" instance=ExtResource("6_o822w")]
 unique_name_in_owner = true

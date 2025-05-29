@@ -21,6 +21,7 @@ Globals="*res://src/autoload/globals.gd"
 AudioManager="*res://src/autoload/audio_manager.tscn"
 ActivityOverlay="*res://src/level/activity/activity_overlay.tscn"
 SceneTransition="*res://src/autoload/scene_transition.tscn"
+ScoreTracker="*res://src/autoload/score_tracker.tscn"
 
 [display]
 

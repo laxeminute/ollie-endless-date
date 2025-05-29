@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5mjmx2mnra28"]
+
+[ext_resource type="Script" uid="uid://ckfiqygtxrusc" path="res://src/autoload/score_tracker.gd" id="1_f0u6q"]
+
+[node name="ScoreTracker" type="Node"]
+script = ExtResource("1_f0u6q")

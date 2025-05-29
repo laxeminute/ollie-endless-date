@@ -26,5 +26,6 @@ script = ExtResource("1_rb10x")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_ek2os")
-volume_db = -6.0
+volume_db = -4.0
+autoplay = true
 bus = &"Music"

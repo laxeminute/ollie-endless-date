@@ -9,8 +9,8 @@ var score: int
 var date_spots: Array
 var bonus_item_timer: float
 var next_partner_timer: float
+var num_of_spawned_partners: int
 
-var _current_spawn_index: int
 var _partner_spawn_order: Array
 var _bonus_item_queue: Array
 
@@ -18,21 +18,22 @@ var _bonus_item_queue: Array
 @onready var player: Player = $Player
 @onready var snack_carts = get_tree().get_nodes_in_group("snack_cart")
 
-
 func _ready() -> void:
 	player.initialize(map, player_starting_point)
 	player.max_angst_reached.connect(_on_max_angst_reached)
 	_partner_spawn_order = Globals.PARTNERS.duplicate()
 	_partner_spawn_order.shuffle()
-	_current_spawn_index = 0
+	num_of_spawned_partners = 0
 	_on_next_partner_timeout()
 	_on_next_partner_timeout()
 	
+	ScoreTracker.start(self)
 	AudioManager.switch_to_gameplay_music()
 
 
 func _on_max_angst_reached() -> void:
 	SceneTransition.fade_to_scene(PATH_TO_GAME_OVER)
+	ScoreTracker.finish()
 	AudioManager.stop_music()
 
 
@@ -50,8 +51,8 @@ func _get_next_bonus_item() -> String:
 
 
 func _on_next_partner_timeout() -> void:
-	if _current_spawn_index >= _partner_spawn_order.size():
+	if num_of_spawned_partners >= _partner_spawn_order.size():
 		return
-	var next_partner = _partner_spawn_order[_current_spawn_index]
-	date_location_spawn_order[_current_spawn_index].spawn_partner(next_partner)
-	_current_spawn_index += 1
+	var next_partner = _partner_spawn_order[num_of_spawned_partners]
+	date_location_spawn_order[num_of_spawned_partners].spawn_partner(next_partner)
+	num_of_spawned_partners += 1

@@ -52,16 +52,8 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		var holdable_id = actor.currently_holding.id
 		if holdable_id == partner.id:
 			_on_returning_from_activity()
-		# correct food
-		elif holdable_id == partner.current_request:
-			partner.finish_request()
-			partner.restore_enjoyment()
-		# bonus item
-		elif Globals.ITEMS.has(holdable_id):
-			partner.receive_bonus_item(holdable_id)
-		# wrong food
 		else:
-			partner.receive_wrong_food()
+			partner.receive_item(holdable_id)
 		actor.currently_holding = null
 	# actor is visiting empty handed
 	else:
@@ -104,10 +96,10 @@ func _on_returning_from_activity() -> void:
 	actor.held_partner.texture = null
 	_on_partner_arrived()
 	if partner.current_request.is_empty():
-		partner.restore_enjoyment()
+		partner.activity_successful()
 	else:
 		partner.finish_request()
-		partner.ruined_activity()
+		partner.activity_canceled()
 
 
 func _update_enjoyment_bar(new_value: float) -> void:

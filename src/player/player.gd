@@ -28,6 +28,7 @@ var is_in_minigame: bool
 @onready var angst_bar: TextureProgressBar = %AngstBar
 @onready var item_icon: TextureRect = %ItemIcon
 @onready var score: Label = %Score
+@onready var added_score: Label = %AddedScore
 @onready var time: Label = %Time
 @onready var border_flash: BorderFlash = %BorderFlash
 @onready var angst_sound_1: AudioStreamPlayer = $AngstSound1
@@ -40,6 +41,8 @@ func _ready() -> void:
 	Globals.activity_canceled.connect(_on_activity_canceled)
 	angst_bar.max_value = MAX_ANGST
 	actor.holdable_updated.connect(_on_holdable_updated)
+	ScoreTracker.one_second_ticked.connect(_on_game_time_updated)
+	ScoreTracker.score_added.connect(_on_game_score_updated)
 
 
 func initialize(map: Map, starting_point: int) -> void:
@@ -130,3 +133,14 @@ func _on_holdable_updated() -> void:
 		item_icon.texture = Globals.Icons[actor.currently_holding.id]
 	else:
 		item_icon.texture = null
+
+
+func _on_game_time_updated() -> void:
+	var game_time = ScoreTracker.game_time
+	time.text = "%d:%02d" % [floor(game_time / 60), int(game_time) % 60]
+	score.text = "%010d" % int(ScoreTracker.score)
+
+
+func _on_game_score_updated(base_point: float, multiplier: float) -> void:
+	score.text = "%010d" % int(ScoreTracker.score)
+	added_score.text = "+%2d x%.1f" % [int(base_point), multiplier]
