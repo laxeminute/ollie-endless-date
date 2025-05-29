@@ -29,3 +29,4 @@ stream = SubResource("AudioStreamInteractive_ek2os")
 volume_db = -4.0
 autoplay = true
 bus = &"Music"
+playback_type = 1
