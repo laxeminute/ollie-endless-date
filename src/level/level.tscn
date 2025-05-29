@@ -309,10 +309,6 @@ connections = [NodePath("../Point19")]
 [node name="SnackCart2" parent="Map/Point36" instance=ExtResource("5_p6v4a")]
 
 [node name="Player" parent="." instance=ExtResource("8_ob0n7")]
-angst_increase_on_leave_count = 10.0
-angst_increase_on_wrong_food = 5.0
-angst_increase_on_activity_canceled = 5.0
-angst_tween_rate = 20.0
 
 [node name="BonusItem" type="Timer" parent="."]
 wait_time = 20.0
