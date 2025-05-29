@@ -27,10 +27,13 @@ func _ready() -> void:
 	_current_spawn_index = 0
 	_on_next_partner_timeout()
 	_on_next_partner_timeout()
+	
+	AudioManager.switch_to_gameplay_music()
 
 
 func _on_max_angst_reached() -> void:
 	SceneTransition.fade_to_scene(PATH_TO_GAME_OVER)
+	AudioManager.stop_music()
 
 
 func _on_bonus_item_timeout() -> void:

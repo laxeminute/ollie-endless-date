@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://src/autoload/globals.gd"
+AudioManager="*res://src/autoload/audio_manager.tscn"
 ActivityOverlay="*res://src/level/activity/activity_overlay.tscn"
 SceneTransition="*res://src/autoload/scene_transition.tscn"
 
