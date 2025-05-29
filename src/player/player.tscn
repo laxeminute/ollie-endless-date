@@ -155,7 +155,7 @@ offset_top = 16.0
 offset_right = 81.0
 offset_bottom = 28.0
 theme_override_font_sizes/font_size = 9
-text = "0000000200"
+text = "0000000000"
 
 [node name="Time" type="Label" parent="HUD/Score/Rect"]
 unique_name_in_owner = true
