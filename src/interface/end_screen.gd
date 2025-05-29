@@ -7,6 +7,7 @@ const PATH_TO_TITLE = "uid://bmt3f0gx76jkh"
 
 func _ready() -> void:
 	%Description.text = base_text % ScoreTracker.score
+	%BackButton.grab_focus.call_deferred()
 
 
 func _on_back_button_pressed() -> void:
