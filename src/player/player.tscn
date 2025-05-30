@@ -45,7 +45,7 @@ script = ExtResource("1_5f2sf")
 
 [node name="Actor" type="Sprite2D" parent="."]
 texture = ExtResource("2_jiejy")
-hframes = 5
+hframes = 6
 vframes = 2
 script = ExtResource("3_o822w")
 move_speed = 300.0

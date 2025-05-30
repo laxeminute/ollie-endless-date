@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cc274uw0vlck1"]
+[gd_scene load_steps=10 format=3 uid="uid://cc274uw0vlck1"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_sqpx8"]
 [ext_resource type="Script" uid="uid://faw8h0fktewk" path="res://src/object/food_stall.gd" id="2_j4le3"]
-[ext_resource type="Texture2D" uid="uid://065v87o7n43v" path="res://assets/sprite/stands.png" id="3_a5wou"]
 [ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_n0kvw"]
 [ext_resource type="Texture2D" uid="uid://cdwslrsyynick" path="res://assets/sprite/small_icons.png" id="4_a5wou"]
 [ext_resource type="AudioStream" uid="uid://etu2qosrth0q" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_foodready_FD1.wav" id="6_wjf07"]
@@ -29,12 +28,7 @@ cook_duration = 4.0
 disabled = false
 debug_color = Color(0.678766, 0.49921, 0.204809, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-texture = ExtResource("3_a5wou")
-hframes = 4
-vframes = 2
-
-[node name="SpeechBubble" type="TextureProgressBar" parent="." index="2"]
+[node name="SpeechBubble" type="TextureProgressBar" parent="." index="1"]
 unique_name_in_owner = true
 offset_left = -13.0
 offset_top = -39.0
@@ -66,10 +60,10 @@ offset_right = 24.0
 offset_bottom = 20.0
 texture = SubResource("AtlasTexture_tg3gd")
 
-[node name="FoodStartSound" type="AudioStreamPlayer" parent="." index="3"]
+[node name="FoodStartSound" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource("6_xtvu6")
 bus = &"SFX"
 
-[node name="FoodReadySound" type="AudioStreamPlayer" parent="." index="4"]
+[node name="FoodReadySound" type="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource("6_wjf07")
 bus = &"SFX"

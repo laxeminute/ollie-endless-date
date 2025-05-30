@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmt3f0gx76jkh"]
+[gd_scene load_steps=5 format=3 uid="uid://bmt3f0gx76jkh"]
 
 [ext_resource type="Script" uid="uid://dtek2sckpvmph" path="res://src/interface/title_screen.gd" id="1_igqt4"]
 
@@ -7,6 +7,9 @@ colors = PackedColorArray(0.262911, 0.0954075, 0.0705638, 1, 0.469297, 0.279406,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1yyjn"]
 gradient = SubResource("Gradient_6hjt2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_igqt4"]
+content_margin_left = 12.0
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -32,15 +35,27 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -103.0
+offset_left = -63.5
 offset_top = 25.0
-offset_right = 103.0
+offset_right = 63.5
 offset_bottom = 65.0
 grow_horizontal = 2
 
-[node name="LogoPlaceholder" type="Label" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-text = "LOGO GOES HERE WOW"
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LogoPlaceholder" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_igqt4")
+text = "Ollie's"
+
+[node name="LogoPlaceholder2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "OVERDATE!"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -63,14 +78,17 @@ layout_mode = 2
 text = "Date Start!"
 
 [node name="TutorialButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "How to Play"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Credits"
 
