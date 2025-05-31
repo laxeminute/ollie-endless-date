@@ -14,8 +14,8 @@ var bar_tween: Tween
 @onready var partner_anchor: Marker2D = $PartnerAnchor
 @onready var enjoyment_bar: ProgressBar = $EnjoymentBar
 @onready var leave_bar: TextureProgressBar = $LeaveBar
-@onready var thought_bubble: TextureRect = $ThoughtBubble
-@onready var request_icon: TextureRect = $ThoughtBubble/RequestIcon
+@onready var thought_bubble: TextureRect = %ThoughtBubble
+@onready var request_icon: TextureRect = %RequestIcon
 @onready var chat_sound: AudioStreamPlayer = $ChatSound
 
 func _ready() -> void:
@@ -23,6 +23,7 @@ func _ready() -> void:
 	enjoyment_style = enjoyment_bar.get_theme_stylebox("fill", "ProgressBar") as StyleBoxFlat
 	enjoyment_bar.max_value = Partner.MAX_VISIBLE_ENJOYMENT
 	leave_bar.max_value = Partner.LEAVE_WAIT_COUNT
+	recommend_visit(true)
 
 
 func spawn_partner(id: String) -> void:
@@ -61,19 +62,18 @@ func on_actor_arriving(p_actor: Actor) -> void:
 
 
 func on_actor_leaving() -> void:
-	if partner and not partner.current_request.is_empty():
+	if partner:
 		var heading_to_game_booth := false
 		var heading_to = actor._map.get_site_at_point(actor.current_path[0])
 		if heading_to and heading_to.is_in_group("game_booth"):
 			heading_to_game_booth = true
-		var requesting_minigame := partner.current_request[0] == "G"
-
-		if heading_to_game_booth and requesting_minigame:
+	
+		if heading_to_game_booth and partner.is_requesting_minigame:
 			actor.currently_holding = partner
 			actor.held_partner.texture = partner.texture
 			partner.follow_actor()
 			_on_partner_left()
-
+	
 	super()
 
 

@@ -14,3 +14,7 @@ script = ExtResource("1_npvjm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gt4la")
 disabled = true
+
+[node name="Dialog" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0

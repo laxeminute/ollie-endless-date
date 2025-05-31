@@ -6,7 +6,8 @@ var _return_location: int
 
 
 func _ready() -> void:
-	$SpeechBubble/RequestIcon.texture = Globals.Icons[game_id]
+	$Dialog/SpeechBubble/RequestIcon.texture = Globals.Icons[game_id]
+	recommend_visit(false)
 
 
 func on_actor_arriving(p_actor: Actor) -> void:

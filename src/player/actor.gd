@@ -15,6 +15,7 @@ var currently_holding:
 	set(value):
 		currently_holding = value
 		holdable_updated.emit()
+		_update_dispose_recommendation()
 
 var _map: Map
 var _currently_move_toward: Vector2
@@ -60,6 +61,7 @@ func on_arriving_at_site() -> void:
 	var site = _map.get_site_at_point(current_point)
 	site.on_actor_arriving(self)
 	current_site = site
+	_update_visit_recommendations()
 
 
 func on_leaving_site() -> void:
@@ -67,3 +69,26 @@ func on_leaving_site() -> void:
 		return
 	current_site.on_actor_leaving()
 	current_site = null
+
+
+func _update_visit_recommendations() -> void:
+	if current_site and current_site.is_in_group("date_spot"):
+		if current_site.partner and current_site.partner.is_requesting_minigame:
+			get_tree().call_group("food_stall", "recommend_visit", false)
+			get_tree().call_group("game_booth", "recommend_visit", true)
+			return
+	
+	get_tree().call_group("food_stall", "recommend_visit", not currently_holding)
+	get_tree().call_group("game_booth", "recommend_visit", false)
+
+
+func _update_dispose_recommendation() -> void:
+	if not currently_holding:
+		get_tree().call_group("disposer", "recommend_visit", false)
+	else:
+		if currently_holding.id[0] == "F":
+			get_tree().call_group("disposer", "recommend_visit", true)
+		elif currently_holding.id[0] == "I":
+			get_tree().call_group("disposer", "recommend_gift", true)
+		else:
+			get_tree().call_group("disposer", "recommend_visit", false)

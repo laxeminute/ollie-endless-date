@@ -6,17 +6,13 @@ const PATH_TO_GAME_OVER = "uid://dt2tlhl582r2j"
 @export var date_location_spawn_order: Array[Site]
 
 var score: int
-var date_spots: Array
 var bonus_item_timer: float
 var next_partner_timer: float
 var num_of_spawned_partners: int
-
 var _partner_spawn_order: Array
-#var _bonus_item_queue: Array
 
 @onready var map: Map = $Map
 @onready var player: Player = $Player
-@onready var snack_cart = $Map/Point0/SnackCart1
 
 func _ready() -> void:
 	player.initialize(map, player_starting_point)
@@ -35,13 +31,6 @@ func _on_max_angst_reached() -> void:
 	SceneTransition.fade_to_scene(PATH_TO_GAME_OVER)
 	ScoreTracker.finish()
 	AudioManager.stop_music()
-
-
-func _on_bonus_item_timeout() -> void:
-	#var item = _get_next_bonus_item()
-	#var cart = snack_carts.pick_random()
-	#cart.spawn_item(item)
-	snack_cart.spawn_item(Globals.ITEMS[0])
 
 
 #func _get_next_bonus_item() -> String:
