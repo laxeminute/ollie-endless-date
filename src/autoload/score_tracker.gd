@@ -10,7 +10,7 @@ signal one_second_ticked
 @export var food_request_pts: float = 5.0
 @export var game_request_pts: float = 8.0
 @export var correct_preference_pts: float = 5.0
-@export var pts_multiplier_per_partner: float = 0.5
+@export var pts_multiplier_per_partner: float = 1.0
 
 var game_time: float
 var score: float
@@ -54,8 +54,11 @@ func _on_correct_food_given() -> void:
 	add_score(food_request_pts, _get_partners_multiplier())
 
 
-func _on_correct_preference_given() -> void:
-	add_score(correct_preference_pts, _get_partners_multiplier())
+func _on_correct_preference_given(is_partner: bool = true) -> void:
+	if is_partner:
+		add_score(correct_preference_pts, _get_partners_multiplier())
+	else:
+		add_score(correct_preference_pts, 1.0)
 
 
 func _on_activity_successful() -> void:
@@ -65,4 +68,4 @@ func _on_activity_successful() -> void:
 func _get_partners_multiplier() -> float:
 	if not _level:
 		return 0.0
-	return _level.num_of_spawned_partners * pts_multiplier_per_partner
+	return (_level.num_of_spawned_partners - 1) * pts_multiplier_per_partner

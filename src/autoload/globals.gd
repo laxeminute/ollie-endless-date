@@ -29,7 +29,6 @@ const Icons = {
 	"G3": preload("res://assets/sprite/request_game_3.atlastex"),
 	"G4": preload("res://assets/sprite/request_game_4.atlastex"),
 	"I1": preload("res://assets/sprite/item_1.atlastex"),
-	"I2": preload("res://assets/sprite/item_2.atlastex"),
 	"P1": preload("res://assets/sprite/partner_1.atlastex"),
 	"P2": preload("res://assets/sprite/partner_2.atlastex"),
 	"P3": preload("res://assets/sprite/partner_3.atlastex"),

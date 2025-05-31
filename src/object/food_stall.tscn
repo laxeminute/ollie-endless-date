@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc274uw0vlck1"]
+[gd_scene load_steps=11 format=3 uid="uid://cc274uw0vlck1"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_sqpx8"]
 [ext_resource type="Script" uid="uid://faw8h0fktewk" path="res://src/object/food_stall.gd" id="2_j4le3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cdwslrsyynick" path="res://assets/sprite/small_icons.png" id="4_a5wou"]
 [ext_resource type="AudioStream" uid="uid://etu2qosrth0q" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_foodready_FD1.wav" id="6_wjf07"]
 [ext_resource type="AudioStream" uid="uid://bytbtpoexyko8" path="res://assets/audio/SFX/Env/sfx_gameplay_Env_foodstart_FD1.wav" id="6_xtvu6"]
+[ext_resource type="AudioStream" uid="uid://bppw0g3a0nnp" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_itempickup_FD1.ogg" id="7_xtvu6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wjf07"]
 atlas = ExtResource("3_n0kvw")
@@ -28,8 +29,17 @@ cook_duration = 4.0
 disabled = false
 debug_color = Color(0.678766, 0.49921, 0.204809, 0.42)
 
-[node name="SpeechBubble" type="TextureProgressBar" parent="." index="1"]
+[node name="FoodStartSound" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("6_xtvu6")
+bus = &"SFX"
+
+[node name="FoodReadySound" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("6_wjf07")
+bus = &"SFX"
+
+[node name="SpeechBubble" type="TextureProgressBar" parent="Dialog" index="0"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -13.0
 offset_top = -39.0
 offset_right = 13.0
@@ -39,7 +49,7 @@ texture_under = SubResource("AtlasTexture_wjf07")
 texture_progress = SubResource("AtlasTexture_xtvu6")
 tint_progress = Color(0.5, 0.5, 0.5, 1)
 
-[node name="RequestIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+[node name="RequestIcon" type="TextureRect" parent="Dialog/SpeechBubble" index="0"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
@@ -51,7 +61,7 @@ offset_right = 8.0
 offset_bottom = 19.0
 grow_horizontal = 2
 
-[node name="Check" type="TextureRect" parent="SpeechBubble" index="1"]
+[node name="Check" type="TextureRect" parent="Dialog/SpeechBubble" index="1"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 18.0
@@ -60,10 +70,6 @@ offset_right = 24.0
 offset_bottom = 20.0
 texture = SubResource("AtlasTexture_tg3gd")
 
-[node name="FoodStartSound" type="AudioStreamPlayer" parent="." index="2"]
-stream = ExtResource("6_xtvu6")
-bus = &"SFX"
-
-[node name="FoodReadySound" type="AudioStreamPlayer" parent="." index="3"]
-stream = ExtResource("6_wjf07")
+[node name="PickupSound" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("7_xtvu6")
 bus = &"SFX"

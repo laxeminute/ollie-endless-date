@@ -16,14 +16,14 @@ game_id = ""
 disabled = false
 debug_color = Color(0, 0.549662, 0.92526, 0.42)
 
-[node name="SpeechBubble" type="TextureRect" parent="." index="1"]
+[node name="SpeechBubble" type="TextureRect" parent="Dialog" index="0"]
 offset_left = -13.0
 offset_top = -39.0
 offset_right = 13.0
 offset_bottom = -14.0
 texture = SubResource("AtlasTexture_ghnyf")
 
-[node name="RequestIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+[node name="RequestIcon" type="TextureRect" parent="Dialog/SpeechBubble" index="0"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

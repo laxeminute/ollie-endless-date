@@ -27,15 +27,15 @@ bg_color = Color(0.6, 0.898039, 0.313726, 1)
 atlas = ExtResource("4_103yh")
 region = Rect2(106, 7, 12, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2bxf"]
-atlas = ExtResource("4_103yh")
-region = Rect2(2, 2, 26, 28)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwnmt"]
 streams_count = 2
 stream_0/stream = ExtResource("5_s2bxf")
 stream_0/weight = 2.0
 stream_1/stream = ExtResource("6_ysjvi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2bxf"]
+atlas = ExtResource("4_103yh")
+region = Rect2(2, 2, 26, 28)
 
 [node name="DateSpot" groups=["date_spot", "site"] instance=ExtResource("1_rjstw")]
 script = ExtResource("2_y6rm3")
@@ -72,14 +72,21 @@ texture_progress = SubResource("AtlasTexture_0rnyd")
 tint_under = Color(0.184314, 0.184314, 0.184314, 1)
 tint_progress = Color(0.984314, 0.227451, 0.227451, 1)
 
-[node name="ThoughtBubble" type="TextureRect" parent="." index="4"]
+[node name="ChatSound" type="AudioStreamPlayer" parent="." index="4"]
+stream = SubResource("AudioStreamRandomizer_mwnmt")
+bus = &"SFX"
+
+[node name="ThoughtBubble" type="TextureRect" parent="Dialog" index="0"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = -27.0
 offset_top = -34.0
 offset_right = -1.0
 offset_bottom = -6.0
 texture = SubResource("AtlasTexture_s2bxf")
 
-[node name="RequestIcon" type="TextureRect" parent="ThoughtBubble" index="0"]
+[node name="RequestIcon" type="TextureRect" parent="Dialog/ThoughtBubble" index="0"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -90,7 +97,3 @@ offset_right = 8.0
 offset_bottom = 19.0
 grow_horizontal = 2
 texture = ExtResource("6_s2bxf")
-
-[node name="ChatSound" type="AudioStreamPlayer" parent="." index="5"]
-stream = SubResource("AudioStreamRandomizer_mwnmt")
-bus = &"SFX"

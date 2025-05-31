@@ -20,12 +20,18 @@ const LEAVE_WAIT_COUNT = 5.0
 var id: String
 var date_spot: Site
 
-@onready var joy_restored_sound: AudioStreamPlayer = $JoyRestoredSound
+var is_requesting_minigame: bool:
+	get:
+		if current_request.is_empty():
+			return false
+		else:
+			return current_request[0] == "G"
 
 var current_enjoyment: float:
 	set(value):
 		current_enjoyment = clamp(value, 0.0, MAX_ENJOYMENT)
 		enjoyment_updated.emit(current_enjoyment)
+
 var is_wanting_to_leave: bool
 var leave_countdown: float
 var current_request: String
@@ -34,6 +40,8 @@ var is_following_actor: bool
 var _leave_sec_counter: float
 var _request_counter: float
 var _request_queue: Array[String]
+
+@onready var joy_restored_sound: AudioStreamPlayer = $JoyRestoredSound
 
 
 func initialize(p_id: String, p_date_spot: Site) -> void:

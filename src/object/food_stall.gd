@@ -9,9 +9,11 @@ var _cook_progress: float
 @onready var check: TextureRect = %Check
 @onready var food_start_sound: AudioStreamPlayer = $FoodStartSound
 @onready var food_ready_sound: AudioStreamPlayer = $FoodReadySound
+@onready var pickup_sound: AudioStreamPlayer = $PickupSound
 
 func _ready() -> void:
 	%RequestIcon.texture = Globals.Icons[food_id]
+	recommend_visit(true)
 	check.hide()
 
 
@@ -24,6 +26,7 @@ func on_actor_arriving(p_actor: Actor) -> void:
 		is_food_ready = false
 		check.hide()
 		actor.currently_holding = {"id": food_id}
+		pickup_sound.play()
 	else:
 		if not is_cooking:
 			_cook_progress = 0.0
@@ -46,6 +49,7 @@ func _update_cook_progress(delta: float) -> void:
 		# actor is currently present
 		if actor:
 			actor.currently_holding = {"id": food_id}
+			pickup_sound.play()
 		else:
 			is_food_ready = true
 			check.show()
