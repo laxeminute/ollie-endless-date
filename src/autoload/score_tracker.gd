@@ -3,6 +3,7 @@ extends Node
 signal correct_food_given
 signal correct_preference_given
 signal activity_successful
+signal food_disposed
 signal score_added(base_point: float, multiplier: float)
 signal one_second_ticked
 
@@ -10,7 +11,8 @@ signal one_second_ticked
 @export var food_request_pts: float = 5.0
 @export var game_request_pts: float = 8.0
 @export var correct_preference_pts: float = 5.0
-@export var pts_multiplier_per_partner: float = 0.5
+@export var pts_multiplier_per_partner: float = 1.0
+@export var food_disposal_pts: float = 5.0
 
 var game_time: float
 var score: float
@@ -23,6 +25,7 @@ func _ready() -> void:
 	correct_food_given.connect(_on_correct_food_given)
 	correct_preference_given.connect(_on_correct_preference_given)
 	activity_successful.connect(_on_activity_successful)
+	food_disposed.connect(_on_food_disposed)
 
 
 func _process(delta: float) -> void:
@@ -62,7 +65,11 @@ func _on_activity_successful() -> void:
 	add_score(game_request_pts, _get_partners_multiplier())
 
 
+func _on_food_disposed() -> void:
+	add_score(food_disposal_pts, 1.0)
+
+
 func _get_partners_multiplier() -> float:
 	if not _level:
 		return 0.0
-	return _level.num_of_spawned_partners * pts_multiplier_per_partner
+	return (_level.num_of_spawned_partners - 1) * pts_multiplier_per_partner

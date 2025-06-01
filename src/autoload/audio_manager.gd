@@ -16,7 +16,7 @@ var current_music_volume_index: int:
 	get:
 		return bus_volume_index[AudioBus.Music]
 
-@onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var music_player: Node = $MusicPlayer
 
 func _ready() -> void:
 	reset_volume()
@@ -36,19 +36,19 @@ func reset_volume() -> void:
 
 
 func play_music() -> void:
-	music_player.play()
+	music_player.play_music()
 
 
 func stop_music() -> void:
-	music_player.stop()
+	music_player.stop_music()
 
 
 func switch_to_intro_music() -> void:
-	music_player.set("parameters/switch_to_clip", "Intro")
+	music_player.switch_to_intro_music()
 
 
 func switch_to_gameplay_music() -> void:
-	music_player.set("parameters/switch_to_clip", "Gameplay")
+	music_player.switch_to_gameplay_music()
 
 
 func _change_bus_volume(bus_index: int, volume_index: int) -> void:

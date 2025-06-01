@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://clatt5t3f88vg"]
+
+[ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_dhxrr"]
+[ext_resource type="Script" uid="uid://dbxghuwmt4k" path="res://src/object/disposer.gd" id="2_w2gyw"]
+[ext_resource type="Texture2D" uid="uid://5kefsh6ut850" path="res://assets/sprite/characters.png" id="3_af06y"]
+[ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_d74tx"]
+[ext_resource type="Texture2D" uid="uid://ram0v7s862s8" path="res://assets/sprite/request_icons.png" id="5_af06y"]
+[ext_resource type="Texture2D" uid="uid://dvq5uii4rs6nr" path="res://assets/sprite/item_1.atlastex" id="5_v7y4r"]
+[ext_resource type="AudioStream" uid="uid://lhbv7pie8cbl" path="res://assets/audio/SFX/NPC/sfx_gameplay_NPC_joyrestored_FD1.wav" id="6_v7y4r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7y4r"]
+atlas = ExtResource("3_d74tx")
+region = Rect2(35, 3, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je4h0"]
+atlas = ExtResource("5_af06y")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjxrb"]
+atlas = ExtResource("3_d74tx")
+region = Rect2(2, 2, 26, 28)
+
+[node name="Disposer" groups=["disposer", "site"] instance=ExtResource("1_dhxrr")]
+script = ExtResource("2_w2gyw")
+
+[node name="CollisionShape2D" parent="." index="0"]
+disabled = false
+debug_color = Color(0.665973, 0.333618, 0.966562, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_af06y")
+hframes = 6
+vframes = 2
+frame = 9
+
+[node name="SpeechBubble" type="TextureRect" parent="Dialog" index="0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -13.0
+offset_top = -39.0
+offset_right = 13.0
+offset_bottom = -14.0
+texture = SubResource("AtlasTexture_v7y4r")
+
+[node name="DisposeIcon" type="TextureRect" parent="Dialog/SpeechBubble" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 19.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_je4h0")
+
+[node name="ThoughtBubble" type="TextureRect" parent="Dialog" index="1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -27.0
+offset_top = -34.0
+offset_right = -1.0
+offset_bottom = -6.0
+texture = SubResource("AtlasTexture_qjxrb")
+
+[node name="RequestIcon" type="TextureRect" parent="Dialog/ThoughtBubble" index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 3.0
+offset_right = 8.0
+offset_bottom = 19.0
+grow_horizontal = 2
+texture = ExtResource("5_v7y4r")
+
+[node name="DisposedSound" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("6_v7y4r")
+volume_db = -8.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="JoyRestoredSound" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("6_v7y4r")
+bus = &"SFX"

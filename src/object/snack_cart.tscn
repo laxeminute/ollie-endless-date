@@ -1,32 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://byg36wwjyk2i"]
+[gd_scene load_steps=10 format=3 uid="uid://byg36wwjyk2i"]
 
 [ext_resource type="PackedScene" uid="uid://6pns4x44dsba" path="res://src/object/site.tscn" id="1_oyg2a"]
 [ext_resource type="Script" uid="uid://bpvk1crhkfemi" path="res://src/object/snack_cart.gd" id="2_mmpvh"]
 [ext_resource type="Texture2D" uid="uid://bj6edatlx144g" path="res://assets/sprite/site_icons.png" id="3_88lr6"]
+[ext_resource type="Texture2D" uid="uid://dvq5uii4rs6nr" path="res://assets/sprite/item_1.atlastex" id="4_gwna0"]
+[ext_resource type="Texture2D" uid="uid://cdwslrsyynick" path="res://assets/sprite/small_icons.png" id="4_mmpvh"]
+[ext_resource type="AudioStream" uid="uid://bppw0g3a0nnp" path="res://assets/audio/SFX/PC/sfx_gameplay_PC_itempickup_FD1.ogg" id="5_88lr6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gwna0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyg2a"]
 atlas = ExtResource("3_88lr6")
 region = Rect2(35, 3, 26, 25)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmpvh"]
+atlas = ExtResource("3_88lr6")
+region = Rect2(35, 3, 26, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88lr6"]
+atlas = ExtResource("4_mmpvh")
+region = Rect2(17, 2, 6, 5)
+
 [node name="SnackCart" groups=["site", "snack_cart"] instance=ExtResource("1_oyg2a")]
 script = ExtResource("2_mmpvh")
+prepare_duration = 30.0
+decay_duration = 10.0
+item_id = "I1"
 
 [node name="CollisionShape2D" parent="." index="0"]
 disabled = false
-debug_color = Color(0.672276, 0.354122, 0.916731, 0.42)
+debug_color = Color(4.81307e-07, 0.606697, 0.659637, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 hframes = 4
 vframes = 2
 
-[node name="SpeechBubble" type="TextureRect" parent="." index="2"]
+[node name="SpeechBubble" type="TextureProgressBar" parent="Dialog" index="0"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = -13.0
 offset_top = -39.0
 offset_right = 13.0
 offset_bottom = -14.0
-texture = SubResource("AtlasTexture_gwna0")
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_oyg2a")
+texture_progress = SubResource("AtlasTexture_mmpvh")
+tint_progress = Color(0.5, 0.5, 0.5, 1)
 
-[node name="ItemIcon" type="TextureRect" parent="SpeechBubble" index="0"]
+[node name="ItemIcon" type="TextureRect" parent="Dialog/SpeechBubble" index="0"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -36,3 +56,17 @@ offset_top = 3.0
 offset_right = 8.0
 offset_bottom = 19.0
 grow_horizontal = 2
+texture = ExtResource("4_gwna0")
+
+[node name="Check" type="TextureRect" parent="Dialog/SpeechBubble" index="1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 24.0
+offset_bottom = 20.0
+texture = SubResource("AtlasTexture_88lr6")
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("5_88lr6")
+bus = &"SFX"

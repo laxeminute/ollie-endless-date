@@ -16,8 +16,8 @@ const FOOD_REQUESTS = ["F1", "F2", "F3", "F4"]
 const NUM_OF_FOOD = 4
 const GAME_REQUESTS = ["G1", "G2", "G3", "G4"]
 const NUM_OF_GAME = 4
-const ITEMS = ["I1", "I2"]
-const NUM_OF_ITEM = 2
+const ITEMS = ["I1"] # ["I1", "I2"]
+const NUM_OF_ITEM = 1 # 2
 
 const Icons = {
 	"F1": preload("res://assets/sprite/request_food_1.atlastex"),
@@ -29,7 +29,6 @@ const Icons = {
 	"G3": preload("res://assets/sprite/request_game_3.atlastex"),
 	"G4": preload("res://assets/sprite/request_game_4.atlastex"),
 	"I1": preload("res://assets/sprite/item_1.atlastex"),
-	"I2": preload("res://assets/sprite/item_2.atlastex"),
 	"P1": preload("res://assets/sprite/partner_1.atlastex"),
 	"P2": preload("res://assets/sprite/partner_2.atlastex"),
 	"P3": preload("res://assets/sprite/partner_3.atlastex"),
@@ -41,14 +40,14 @@ const Icons = {
 }
 
 const PREFERENCES = {
-	"P1": "I1",
-	"P2": "I1",
+	"P1": "",
+	"P2": "",
 	"P3": "I1",
 	"P4": "I1",
-	"P5": "I2",
-	"P6": "I2",
-	"P7": "I2",
-	"P8": "I2",
+	"P5": "",
+	"P6": "I1",
+	"P7": "I1",
+	"P8": "",
 }
 
 
