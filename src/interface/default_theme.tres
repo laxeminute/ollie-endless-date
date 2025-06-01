@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://xf6en65v74ms"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://xf6en65v74ms"]
 
 [ext_resource type="StyleBox" uid="uid://6qlyttkgg32i" path="res://src/interface/highlighted_panel.tres" id="1_27ci4"]
 [ext_resource type="StyleBox" uid="uid://b0dt31w2beghj" path="res://src/interface/default_panel.tres" id="1_c4ass"]
 [ext_resource type="StyleBox" uid="uid://bgp3po6sfrye" path="res://src/interface/button_box.tres" id="2_13ocp"]
 [ext_resource type="FontFile" uid="uid://dfog3btwmto0t" path="res://assets/font/PixeloidSans.otf" id="3_2ycch"]
+[ext_resource type="FontFile" uid="uid://c0wfpwvql0yj0" path="res://assets/font/PixeloidSans-Bold.otf" id="5_frhls"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13ocp"]
 content_margin_left = 4.0
@@ -22,8 +23,63 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_frhls"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(1, 0.733333, 0.733333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frhls"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.73, 0.73, 0.74902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62w7g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.999999, 0.873888, 0.871967, 0.74902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3sm0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.999997, 0.523666, 0.541687, 0.74902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75bmy"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.24, 0.0816, 0.0816, 0.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfyvk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0823529, 0.870588, 0.678431, 0.74902)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="FontVariation" id="FontVariation_62w7g"]
+fallbacks = Array[Font]([ExtResource("5_frhls")])
+base_font = ExtResource("3_2ycch")
+
 [resource]
-default_font = ExtResource("3_2ycch")
+default_font = SubResource("FontVariation_62w7g")
 default_font_size = 18
 Button/colors/font_color = Color(1, 0.733333, 0.733333, 1)
 Button/colors/font_focus_color = Color(1, 0.733333, 0.733333, 1)
@@ -32,7 +88,13 @@ Button/colors/font_pressed_color = Color(1, 0.733333, 0.733333, 1)
 Button/styles/focus = SubResource("StyleBoxFlat_13ocp")
 Button/styles/hover = ExtResource("1_27ci4")
 Button/styles/normal = ExtResource("2_13ocp")
+HSeparator/styles/separator = SubResource("StyleBoxLine_frhls")
 Label/colors/font_color = Color(1, 0.733333, 0.733333, 1)
 Panel/styles/panel = ExtResource("1_c4ass")
 PanelContainer/styles/panel = ExtResource("1_c4ass")
 RichTextLabel/colors/default_color = Color(1, 0.733333, 0.733333, 1)
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_frhls")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_62w7g")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_k3sm0")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_75bmy")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_mfyvk")

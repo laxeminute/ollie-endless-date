@@ -8,8 +8,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 22.0
-text = "WE DID IT WE MADE VIDEO GAMES"
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][color=white]Team[/color]
+Laxem: Design & Code (Core), Spritework
+VernalUmbrella: Design & Code (Minigames), UI
+Luca Chūba: Music, SFX
+[color=white]Tools & Assets[/color]
+Made in Godot Game Engine 4.4
+Pixeloid font by GGBotNet under OFL 1.1
+[color=white]Disclaimer[/color]
+\"hololive production\" is a registered trademark of COVER Corp. This fan-made game complies with the COVER Derivative Works Guidelines, which can be found at
+[url]https://hololivepro.com/terms[/url].
+[/center]"
+horizontal_alignment = 1
