@@ -143,4 +143,4 @@ func _on_game_time_updated() -> void:
 
 func _on_game_score_updated(base_point: float, multiplier: float) -> void:
 	score.text = "%010d" % int(ScoreTracker.score)
-	added_score.text = "+%2d x%.1f" % [int(base_point), multiplier]
+	added_score.text = "+%2d x %d" % [int(base_point), roundi(multiplier)]
