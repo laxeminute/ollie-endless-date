@@ -2,24 +2,28 @@
 
 [ext_resource type="Script" uid="uid://dnlsr07vo0rw4" path="res://src/object/site.gd" id="1_npvjm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gt4la"]
-radius = 28.0
-
-[sub_resource type="Gradient" id="Gradient_npvjm"]
+[sub_resource type="Gradient" id="Gradient_ta8ab"]
 interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 0.909333, 0.68, 0.494118, 1, 0.900333, 0.77, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ta8ab"]
-gradient = SubResource("Gradient_npvjm")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oeaj3"]
+gradient = SubResource("Gradient_ta8ab")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gt4la"]
+radius = 28.0
 
 [node name="Site" type="Area2D"]
 collision_layer = 2
 monitoring = false
 monitorable = false
 script = ExtResource("1_npvjm")
+
+[node name="Glow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_oeaj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gt4la")
@@ -28,11 +32,6 @@ disabled = true
 [node name="Dialog" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0.820904, 0.544659, 1)
-energy = 0.0
-texture = SubResource("GradientTexture2D_ta8ab")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

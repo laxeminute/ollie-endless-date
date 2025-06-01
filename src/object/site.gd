@@ -4,12 +4,10 @@ extends Area2D
 const DIALOG_ALPHA_ON_RECOMMENDED = 1.0
 const DIALOG_ALPHA_ON_NOT_RECOMMENDED = 0.4
 
-@export var glow_intensity: float = 0.8
-
 var location_id: int
 var actor: Actor = null
+@onready var glow: Sprite2D = $Glow
 @onready var dialog: Control = $Dialog
-@onready var light: PointLight2D = $PointLight2D
 
 
 func on_actor_arriving(p_actor: Actor) -> void:
@@ -33,11 +31,11 @@ func _on_mouse_entered() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(light, "energy", glow_intensity, 0.3)
+	tween.tween_property(glow, "modulate", Color.WHITE, 0.3)
 
 
 func _on_mouse_exited() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(light, "energy", 0.0, 0.3)
+	tween.tween_property(glow, "modulate", Color.TRANSPARENT, 0.3)
