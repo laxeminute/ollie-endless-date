@@ -37,6 +37,10 @@ func reset() -> void:
 
 func _fire() -> void:
 	# TODO: animation?
+	if crosshair.has_overlapping_areas():
+		$HitSound.play()
+	else:
+		$MissSound.play()
 	await get_tree().create_timer(0.5).timeout
 	if crosshair.has_overlapping_areas():
 		completed.emit()
@@ -88,6 +92,7 @@ func _setup_tween_x() -> void:
 
 func _on_click_detector_clicked() -> void:
 	if tween_y.is_running():
+		$LockSound.play()
 		tween_y.kill()  # lock vertical in place
 		_setup_tween_x()
 	elif tween_x.is_running():

@@ -15,7 +15,7 @@ func catch() -> void:
 	if catching:
 		return
 	catching = true
-	# TODO: play sound
+	$AudioStreamPlayer.play()
 	z_index = 0
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_IN)

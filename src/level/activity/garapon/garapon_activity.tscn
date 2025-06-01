@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxl0vrsowm4ec" path="res://src/level/activity/garapon/garapon_activity.gd" id="1_mwmut"]
 [ext_resource type="PackedScene" uid="uid://bmvifaq5bnx8m" path="res://src/level/activity/garapon/handle.tscn" id="2_pq3xv"]
-[ext_resource type="AudioStream" uid="uid://dq1el8hcuf4t7" path="res://assets/audio/SFX/UI/sfx_menu_UI_cursor_FD1.wav" id="3_pidpd"]
+[ext_resource type="AudioStream" uid="uid://b5q40pintgxko" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_garaponspin_FD1.ogg" id="3_pidpd"]
 
 [sub_resource type="Gradient" id="Gradient_xerm5"]
 colors = PackedColorArray(0, 1, 0.901961, 0.501961, 1, 0.737255, 1, 0.501961)

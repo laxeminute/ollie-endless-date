@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4c6vhxq7lciu"]
+[gd_scene load_steps=6 format=3 uid="uid://d4c6vhxq7lciu"]
 
 [ext_resource type="Script" uid="uid://d0yei3iwxi1c" path="res://src/level/activity/goldfish/catcher.gd" id="1_wk5ja"]
+[ext_resource type="AudioStream" uid="uid://cjnhx84xg472" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_netdip_FD1.ogg" id="2_hqeum"]
 
 [sub_resource type="Gradient" id="Gradient_wk5ja"]
 offsets = PackedFloat32Array(0, 0.883117, 0.941558, 1)
@@ -27,3 +28,7 @@ texture = SubResource("GradientTexture2D_hqeum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0fyby")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hqeum")
+bus = &"SFX"

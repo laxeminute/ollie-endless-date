@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3qbvcbj5avoy"]
+[gd_scene load_steps=13 format=3 uid="uid://b3qbvcbj5avoy"]
 
 [ext_resource type="PackedScene" uid="uid://cawcs6blimd6n" path="res://src/level/activity/sharpshooting/target.tscn" id="1_bvick"]
 [ext_resource type="Script" uid="uid://p5evdjf50hk7" path="res://src/level/activity/sharpshooting/sharpshooting_activity.gd" id="1_tlbpb"]
+[ext_resource type="AudioStream" uid="uid://cn85gt8ccnxwi" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_aimlockin_FD1.ogg" id="2_lmqy5"]
+[ext_resource type="AudioStream" uid="uid://c2gdmyvamva85" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_aimhit_FD1.ogg" id="3_hkyr5"]
 [ext_resource type="Script" uid="uid://d175w5sjdjnup" path="res://src/level/click_detector.gd" id="3_txmst"]
+[ext_resource type="AudioStream" uid="uid://bcfwsjada8sny" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_aimmiss_FD1.ogg" id="4_uaivt"]
 
 [sub_resource type="Gradient" id="Gradient_8152h"]
 offsets = PackedFloat32Array(0, 0.993506)
@@ -33,6 +36,18 @@ size = Vector2(192, 192)
 
 [node name="SharpshootingActivity" type="Node2D"]
 script = ExtResource("1_tlbpb")
+
+[node name="LockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lmqy5")
+bus = &"SFX"
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hkyr5")
+bus = &"SFX"
+
+[node name="MissSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_uaivt")
+bus = &"SFX"
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_bvick")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8t5u10esm4f6"]
+[gd_scene load_steps=6 format=3 uid="uid://b8t5u10esm4f6"]
 
 [ext_resource type="Script" uid="uid://0uk04lu0r858" path="res://src/level/activity/ring_toss/ring_toss_activity.gd" id="1_ki8va"]
 [ext_resource type="PackedScene" uid="uid://b368s1iv5joem" path="res://src/level/activity/ring_toss/ring_number.tscn" id="2_i7h64"]
+[ext_resource type="AudioStream" uid="uid://s50eulgkkfwg" path="res://assets/audio/SFX/Env/minigame/sfx_gameplay_Env_ringtoss_FD1.ogg" id="3_i7h64"]
 
 [sub_resource type="Gradient" id="Gradient_ji0ru"]
 colors = PackedColorArray(0, 0, 0, 0.501961, 0.262745, 0.541176, 0.137255, 0.501961)
@@ -59,3 +60,7 @@ position = Vector2(0, 60)
 
 [node name="RingNumber9" parent="Numbers" instance=ExtResource("2_i7h64")]
 position = Vector2(52, 60)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i7h64")
+bus = &"SFX"

@@ -38,6 +38,7 @@ func _reset() -> void:
 
 
 func _on_ring_number_clicked(number: int) -> void:
+	$AudioStreamPlayer.play()
 	for rn: RingNumber in $Numbers.get_children():
 		rn.active = false
 	await get_tree().create_timer(0.5).timeout
