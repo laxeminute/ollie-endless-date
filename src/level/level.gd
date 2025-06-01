@@ -14,6 +14,7 @@ var _partner_spawn_order: Array
 @onready var map: Map = $Map
 @onready var player: Player = $Player
 
+
 func _ready() -> void:
 	player.initialize(map, player_starting_point)
 	player.max_angst_reached.connect(_on_max_angst_reached)
@@ -22,7 +23,7 @@ func _ready() -> void:
 	num_of_spawned_partners = 0
 	_on_next_partner_timeout()
 	_on_next_partner_timeout()
-	
+
 	ScoreTracker.start(self)
 	AudioManager.switch_to_gameplay_music()
 
@@ -31,13 +32,14 @@ func _on_max_angst_reached() -> void:
 	SceneTransition.fade_to_scene(PATH_TO_GAME_OVER)
 	ScoreTracker.finish()
 	AudioManager.stop_music()
+	ActivityOverlay.hide()
 
 
 #func _get_next_bonus_item() -> String:
-	#if _bonus_item_queue.is_empty():
-		#_bonus_item_queue = Globals.ITEMS.duplicate()
-		#_bonus_item_queue.shuffle()
-	#return _bonus_item_queue.pop_back()
+#if _bonus_item_queue.is_empty():
+#_bonus_item_queue = Globals.ITEMS.duplicate()
+#_bonus_item_queue.shuffle()
+#return _bonus_item_queue.pop_back()
 
 
 func _on_next_partner_timeout() -> void:
