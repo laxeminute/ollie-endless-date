@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://6pns4x44dsba"]
+[gd_scene load_steps=5 format=3 uid="uid://6pns4x44dsba"]
 
 [ext_resource type="Script" uid="uid://dnlsr07vo0rw4" path="res://src/object/site.gd" id="1_npvjm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gt4la"]
 radius = 28.0
+
+[sub_resource type="Gradient" id="Gradient_npvjm"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ta8ab"]
+gradient = SubResource("Gradient_npvjm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Site" type="Area2D"]
 collision_layer = 2
@@ -18,3 +27,11 @@ disabled = true
 [node name="Dialog" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.820904, 0.544659, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_ta8ab")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -6,6 +6,8 @@ const DIALOG_ALPHA_ON_NOT_RECOMMENDED = 0.4
 var location_id: int
 var actor: Actor = null
 @onready var dialog: Control = $Dialog
+@onready var light: PointLight2D = $PointLight2D
+
 
 func on_actor_arriving(p_actor: Actor) -> void:
 	actor = p_actor
@@ -20,3 +22,17 @@ func recommend_visit(is_recommended: bool) -> void:
 		dialog.modulate = Color(1.0, 1.0, 1.0, DIALOG_ALPHA_ON_RECOMMENDED)
 	else:
 		dialog.modulate = Color(1.0, 1.0, 1.0, DIALOG_ALPHA_ON_NOT_RECOMMENDED)
+
+
+func _on_mouse_entered() -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(light, "energy", 1.0, 0.3)
+
+
+func _on_mouse_exited() -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(light, "energy", 0.0, 0.3)
