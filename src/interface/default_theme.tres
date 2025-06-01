@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://xf6en65v74ms"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://xf6en65v74ms"]
 
 [ext_resource type="StyleBox" uid="uid://6qlyttkgg32i" path="res://src/interface/highlighted_panel.tres" id="1_27ci4"]
 [ext_resource type="StyleBox" uid="uid://b0dt31w2beghj" path="res://src/interface/default_panel.tres" id="1_c4ass"]
@@ -29,6 +29,51 @@ content_margin_top = 0.0
 content_margin_right = 4.0
 content_margin_bottom = 0.0
 color = Color(1, 0.733333, 0.733333, 1)
+
+[sub_resource type="Gradient" id="Gradient_62w7g"]
+offsets = PackedFloat32Array(0, 0.975309, 1)
+colors = PackedColorArray(0.516332, 0.153598, 0.172884, 1, 0.516332, 0.153598, 0.172884, 1, 0.87, 0.261, 0.29145, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_75bmy"]
+gradient = SubResource("Gradient_62w7g")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_frhls"]
+offsets = PackedFloat32Array(0, 0.975309, 1)
+colors = PackedColorArray(0.87, 0.261, 0.29145, 1, 0.87, 0.261, 0.29145, 1, 0.87, 0.261, 0.29145, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k3sm0"]
+gradient = SubResource("Gradient_frhls")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uygh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.73, 0.73, 0.768627)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo5fg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.71, 0.71, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg87p"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.24, 0.0816, 0.0816, 0.6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frhls"]
 content_margin_left = 4.0
@@ -89,6 +134,11 @@ Button/styles/focus = SubResource("StyleBoxFlat_13ocp")
 Button/styles/hover = ExtResource("1_27ci4")
 Button/styles/normal = ExtResource("2_13ocp")
 HSeparator/styles/separator = SubResource("StyleBoxLine_frhls")
+HSlider/icons/grabber = SubResource("GradientTexture2D_75bmy")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_k3sm0")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_5uygh")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_xo5fg")
+HSlider/styles/slider = SubResource("StyleBoxFlat_mg87p")
 Label/colors/font_color = Color(1, 0.733333, 0.733333, 1)
 Panel/styles/panel = ExtResource("1_c4ass")
 PanelContainer/styles/panel = ExtResource("1_c4ass")
