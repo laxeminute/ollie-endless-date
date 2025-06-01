@@ -8,7 +8,12 @@
 default_font = ExtResource("3_2ycch")
 default_font_size = 18
 Button/colors/font_color = Color(1, 0.733333, 0.733333, 1)
+Button/colors/font_focus_color = Color(1, 0.733333, 0.733333, 1)
 Button/colors/font_hover_color = Color(0.109804, 0.109804, 0.109804, 1)
+Button/colors/font_pressed_color = Color(1, 0.733333, 0.733333, 1)
 Button/styles/hover = ExtResource("1_27ci4")
 Button/styles/normal = ExtResource("1_c4ass")
+Label/colors/font_color = Color(1, 0.733333, 0.733333, 1)
 Panel/styles/panel = ExtResource("1_c4ass")
+PanelContainer/styles/panel = ExtResource("1_c4ass")
+RichTextLabel/colors/default_color = Color(1, 0.733333, 0.733333, 1)
