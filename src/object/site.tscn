@@ -6,6 +6,7 @@
 radius = 28.0
 
 [sub_resource type="Gradient" id="Gradient_npvjm"]
+interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ta8ab"]
