@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://kvth33titalq"]
+[gd_scene load_steps=3 format=3 uid="uid://kvth33titalq"]
+
+[ext_resource type="Script" uid="uid://c77jjyvlwiwsk" path="res://src/interface/submenu/settings.gd" id="1_5j6r7"]
+[ext_resource type="AudioStream" uid="uid://dq1el8hcuf4t7" path="res://assets/audio/SFX/UI/sfx_menu_UI_cursor_FD1.wav" id="2_3drgi"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -7,9 +10,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5j6r7")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 22.0
-text = "TURN KNOBS BE FUNNY"
+[node name="SampleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3drgi")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
