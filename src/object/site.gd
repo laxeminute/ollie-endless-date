@@ -25,6 +25,8 @@ func recommend_visit(is_recommended: bool) -> void:
 
 
 func _on_mouse_entered() -> void:
+	if ActivityOverlay.visible:
+		return
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
