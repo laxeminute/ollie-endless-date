@@ -1,32 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://btkciptbu4pw3"]
+[gd_scene load_steps=7 format=3 uid="uid://btkciptbu4pw3"]
 
 [ext_resource type="Script" uid="uid://b1ixlnehk8u6f" path="res://src/autoload/audio_manager.gd" id="1_rb10x"]
-[ext_resource type="AudioStream" uid="uid://b87r1who7fqna" path="res://assets/audio/music/mus_intro_warmup_FD1.ogg" id="2_0e11d"]
-[ext_resource type="AudioStream" uid="uid://b33a30xhjb1u7" path="res://assets/audio/music/mus_gameplay_gameplay1_FD1.ogg" id="5_rj6w6"]
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ek2os"]
-clip_count = 2
-clip_0/name = &"Intro"
-clip_0/stream = ExtResource("2_0e11d")
-clip_0/auto_advance = 0
-clip_1/name = &"Gameplay"
-clip_1/stream = ExtResource("5_rj6w6")
-clip_1/auto_advance = 0
-_transitions = {
-Vector2i(0, 1): {
-"fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 3,
-"to_time": 1
-}
-}
+[ext_resource type="AudioStream" uid="uid://cp2o5gycr4g8c" path="res://assets/audio/music/music_intro_1.ogg" id="2_mk1sw"]
+[ext_resource type="Script" uid="uid://cosqulvym2d8a" path="res://src/system/music_player.gd" id="3_mk1sw"]
+[ext_resource type="AudioStream" uid="uid://dhqpb8fnrsqr0" path="res://assets/audio/music/music_intro_2.ogg" id="4_pbdaj"]
+[ext_resource type="AudioStream" uid="uid://b4st25bmbl2g0" path="res://assets/audio/music/music_gameplay_1.ogg" id="5_cmdha"]
+[ext_resource type="AudioStream" uid="uid://lpohdcjfjm18" path="res://assets/audio/music/music_gameplay_2.ogg" id="6_mdxe6"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_rb10x")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_ek2os")
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("3_mk1sw")
+
+[node name="IntroAudio" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("2_mk1sw")
 volume_db = -4.0
-autoplay = true
 bus = &"Music"
-playback_type = 1
+
+[node name="IntroAudioLoop" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("4_pbdaj")
+volume_db = -4.0
+bus = &"Music"
+
+[node name="GameplayAudio" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("5_cmdha")
+volume_db = -4.0
+bus = &"Music"
+
+[node name="GameplayAudioLoop" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("6_mdxe6")
+volume_db = -4.0
+bus = &"Music"
+
+[connection signal="finished" from="MusicPlayer/IntroAudio" to="MusicPlayer" method="_on_track_finished"]
+[connection signal="finished" from="MusicPlayer/IntroAudioLoop" to="MusicPlayer" method="_on_track_finished"]
+[connection signal="finished" from="MusicPlayer/GameplayAudio" to="MusicPlayer" method="_on_track_finished"]
+[connection signal="finished" from="MusicPlayer/GameplayAudioLoop" to="MusicPlayer" method="_on_track_finished"]
