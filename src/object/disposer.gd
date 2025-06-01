@@ -27,10 +27,11 @@ func on_actor_arriving(p_actor: Actor) -> void:
 	if actor.currently_holding:
 		var holdable_id = actor.currently_holding.id
 		if Globals.ITEMS.has(holdable_id):
-			ScoreTracker.correct_preference_given.emit(false)
+			ScoreTracker.correct_preference_given.emit()
 			joy_restored_sound.play()
 			actor.currently_holding = null
 		elif Globals.FOOD_REQUESTS.has(holdable_id):
+			ScoreTracker.food_disposed.emit()
 			actor.currently_holding = null
 			disposed_sound.play()
 	

@@ -290,7 +290,6 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point19")]
 
 [node name="SnackCart1" parent="Map/Point36" instance=ExtResource("5_p6v4a")]
-decay_duration = 10.0
 
 [node name="Player" parent="." instance=ExtResource("8_ob0n7")]
 
