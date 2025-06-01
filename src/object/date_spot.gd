@@ -4,8 +4,8 @@ const PartnerScene = preload("res://src/object/partner.tscn")
 
 @export var default_bar_color := Color("99e550")
 @export var bad_bar_color := Color("e65050")
-@export var good_bar_color := Color("50c3e6")
-@export var bar_tween_rate: float = 20.0
+@export var good_bar_color := Color("15dead")
+@export var bar_tween_rate: float = 25.0
 
 var partner: Partner
 var enjoyment_style: StyleBoxFlat
@@ -17,6 +17,7 @@ var bar_tween: Tween
 @onready var thought_bubble: TextureRect = %ThoughtBubble
 @onready var request_icon: TextureRect = %RequestIcon
 @onready var chat_sound: AudioStreamPlayer = $ChatSound
+
 
 func _ready() -> void:
 	_on_partner_left()
@@ -67,13 +68,13 @@ func on_actor_leaving() -> void:
 		var heading_to = actor._map.get_site_at_point(actor.current_path[0])
 		if heading_to and heading_to.is_in_group("game_booth"):
 			heading_to_game_booth = true
-	
+
 		if heading_to_game_booth and partner.is_requesting_minigame:
 			actor.currently_holding = partner
 			actor.held_partner.texture = partner.texture
 			partner.follow_actor()
 			_on_partner_left()
-	
+
 	super()
 
 
@@ -109,7 +110,7 @@ func _update_enjoyment_bar(new_value: float) -> void:
 		if bar_tween.is_running():
 			return
 	var diff: float = min(new_value, enjoyment_bar.max_value) - enjoyment_bar.value
-	if abs(diff) < 2.0:
+	if abs(diff) < 10.0:
 		# don't bother animating small changes
 		enjoyment_bar.value = new_value
 		return
