@@ -42,7 +42,7 @@ const Icons = {
 const PREFERENCES = {
 	"P1": "",
 	"P2": "",
-	"P3": "I1",
+	"P3": "",
 	"P4": "I1",
 	"P5": "",
 	"P6": "I1",

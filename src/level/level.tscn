@@ -13,7 +13,7 @@
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("date_location_spawn_order")]
 script = ExtResource("1_3pn8i")
-date_location_spawn_order = [NodePath("Map/Point7/DateSpot1"), NodePath("Map/Point16/DateSpot7"), NodePath("Map/Point3/DateSpot5"), NodePath("Map/Point15/DateSpot8"), NodePath("Map/Point2/DateSpot2"), NodePath("Map/Point14/DateSpot9"), NodePath("Map/Point10/DateSpot6"), NodePath("Map/Point1/DateSpot4")]
+date_location_spawn_order = [NodePath("Map/Point7/DateSpot3"), NodePath("Map/Point16/DateSpot7"), NodePath("Map/Point3/DateSpot2"), NodePath("Map/Point15/DateSpot6"), NodePath("Map/Point2/DateSpot1"), NodePath("Map/Point14/DateSpot5"), NodePath("Map/Point10/DateSpot4"), NodePath("Map/Point37/DateSpot8")]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(240, 135)
@@ -32,19 +32,12 @@ position = Vector2(271, 25)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point18")]
 
-[node name="DateSpot4" parent="Map/Point1" instance=ExtResource("3_r7bvo")]
-position = Vector2(15, 0)
-default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
-bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
-good_bar_color = Color(0.313726, 0.764706, 0.901961, 1)
-bar_tween_rate = 25.0
-
 [node name="Point2" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(46, 75)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point20")]
 
-[node name="DateSpot2" parent="Map/Point2" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot1" parent="Map/Point2" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -56,7 +49,7 @@ position = Vector2(410, 75)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point27")]
 
-[node name="DateSpot5" parent="Map/Point3" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot2" parent="Map/Point3" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -95,7 +88,7 @@ position = Vector2(39, 142)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point29")]
 
-[node name="DateSpot1" parent="Map/Point7" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot3" parent="Map/Point7" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -125,7 +118,7 @@ position = Vector2(435, 157)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point28")]
 
-[node name="DateSpot6" parent="Map/Point10" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot4" parent="Map/Point10" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -160,11 +153,11 @@ position = Vector2(-12, -20)
 food_id = "F2"
 
 [node name="Point14" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
-position = Vector2(143, 239)
+position = Vector2(171, 241)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point31")]
 
-[node name="DateSpot9" parent="Map/Point14" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot5" parent="Map/Point14" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -172,11 +165,11 @@ good_bar_color = Color(0.313726, 0.764706, 0.901961, 1)
 bar_tween_rate = 25.0
 
 [node name="Point15" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
-position = Vector2(262, 243)
+position = Vector2(271, 241)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point33")]
 
-[node name="DateSpot8" parent="Map/Point15" instance=ExtResource("3_r7bvo")]
+[node name="DateSpot6" parent="Map/Point15" instance=ExtResource("3_r7bvo")]
 position = Vector2(15, 0)
 default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
 bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
@@ -265,7 +258,7 @@ connections = [NodePath("../Point7"), NodePath("../Point20"), NodePath("../Point
 [node name="Point30" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(130, 183)
 script = ExtResource("7_5suky")
-connections = [NodePath("../Point11"), NodePath("../Point29"), NodePath("../Point31")]
+connections = [NodePath("../Point11"), NodePath("../Point29"), NodePath("../Point31"), NodePath("../Point37")]
 
 [node name="Point31" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
 position = Vector2(166, 193)
@@ -293,11 +286,24 @@ script = ExtResource("7_5suky")
 connections = [NodePath("../Point16"), NodePath("../Point28"), NodePath("../Point34")]
 
 [node name="Point36" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
-position = Vector2(361, 50)
+position = Vector2(332, 50)
 script = ExtResource("7_5suky")
 connections = [NodePath("../Point19")]
 
 [node name="SnackCart1" parent="Map/Point36" instance=ExtResource("5_p6v4a")]
+position = Vector2(-13, -10)
+
+[node name="Point37" type="Node2D" parent="Map" node_paths=PackedStringArray("connections")]
+position = Vector2(101, 208)
+script = ExtResource("7_5suky")
+connections = [NodePath("../Point30")]
+
+[node name="DateSpot8" parent="Map/Point37" instance=ExtResource("3_r7bvo")]
+position = Vector2(15, 0)
+default_bar_color = Color(0.6, 0.898039, 0.313726, 1)
+bad_bar_color = Color(0.901961, 0.313726, 0.313726, 1)
+good_bar_color = Color(0.313726, 0.764706, 0.901961, 1)
+bar_tween_rate = 25.0
 
 [node name="Player" parent="." instance=ExtResource("8_ob0n7")]
 

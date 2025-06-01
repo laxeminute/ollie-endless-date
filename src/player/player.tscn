@@ -51,7 +51,8 @@ script = ExtResource("3_o822w")
 move_speed = 300.0
 
 [node name="HeldPartner" type="Sprite2D" parent="Actor"]
-position = Vector2(-8, 1)
+position = Vector2(-12, 2)
+flip_h = true
 
 [node name="WalkSound" type="AudioStreamPlayer" parent="Actor"]
 stream = SubResource("AudioStreamRandomizer_2smqc")
